@@ -8,6 +8,13 @@ import { motion } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 
 export function HeroSection() {
+  const scrollToGetInTouch = () => {
+    const getInTouchSection = document.getElementById('get-in-touch');
+    if (getInTouchSection) {
+      getInTouchSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="min-h-screen bg-black/[0.96] relative overflow-hidden">
       <Spotlight
@@ -58,12 +65,12 @@ export function HeroSection() {
               transition={{ delay: 0.6, duration: 0.8 }}
               className="flex gap-4 pt-6"
             >
-              <a 
-                href="#contact" 
+              <button 
+                onClick={scrollToGetInTouch}
                 className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
               >
                 Get In Touch
-              </a>
+              </button>
               <a 
                 href="#projects" 
                 className="border border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300"
@@ -90,19 +97,19 @@ export function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* Right content - 3D Scene */}
+          {/* Right content - 3D Scene merged with background */}
           <motion.div 
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
             className="relative h-[500px] lg:h-[600px]"
           >
-            <Card className="w-full h-full bg-gradient-to-br from-blue-900/20 to-purple-900/20 border-blue-500/20 relative overflow-hidden">
+            <div className="w-full h-full relative overflow-hidden">
               <SplineScene 
                 scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-                className="w-full h-full"
+                className="w-full h-full opacity-80"
               />
-            </Card>
+            </div>
           </motion.div>
         </div>
       </div>

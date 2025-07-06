@@ -17,10 +17,19 @@ export function ContactSection() {
     message: ''
   });
 
+  const scrollToGetInTouch = () => {
+    const getInTouchSection = document.getElementById('get-in-touch');
+    if (getInTouchSection) {
+      getInTouchSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission here
     console.log('Form submitted:', formData);
+    // Redirect to Get In Touch section after form submission
+    scrollToGetInTouch();
   };
 
   const contactInfo = [
@@ -45,7 +54,7 @@ export function ContactSection() {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-neutral-900">
+    <section id="contact" className="py-20 bg-black/[0.96]">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
