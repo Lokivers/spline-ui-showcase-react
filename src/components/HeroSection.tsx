@@ -1,4 +1,3 @@
-
 'use client'
 
 import { SplineScene } from "@/components/ui/splite";
@@ -6,8 +5,12 @@ import { Card } from "@/components/ui/card";
 import { Spotlight } from "@/components/ui/spotlight";
 import { motion } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { useState, useRef } from "react";
 
 export function HeroSection() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const heroRef = useRef<HTMLDivElement>(null);
+
   const scrollToGetInTouch = () => {
     const getInTouchSection = document.getElementById('get-in-touch');
     if (getInTouchSection) {
@@ -15,8 +18,21 @@ export function HeroSection() {
     }
   };
 
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (heroRef.current) {
+      const rect = heroRef.current.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+      const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+      setMousePosition({ x: x * 20, y: y * 20 });
+    }
+  };
+
   return (
-    <section className="min-h-screen bg-black/[0.96] relative overflow-hidden">
+    <section 
+      ref={heroRef}
+      onMouseMove={handleMouseMove}
+      className="min-h-screen bg-black/[0.96] relative overflow-hidden"
+    >
       <Spotlight
         className="-top-40 left-0 md:left-60 md:-top-20"
         fill="white"
@@ -97,17 +113,21 @@ export function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* Right content - 3D Scene merged with background */}
+          {/* Right content - Interactive 3D Scene */}
           <motion.div 
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
             className="relative h-[500px] lg:h-[600px]"
+            style={{
+              transform: `rotateY(${mousePosition.x * 0.1}deg) rotateX(${-mousePosition.y * 0.1}deg)`,
+              transition: 'transform 0.1s ease-out'
+            }}
           >
             <div className="w-full h-full relative overflow-hidden">
               <SplineScene 
                 scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-                className="w-full h-full opacity-80"
+                className="w-full h-full opacity-90 transition-opacity duration-300 hover:opacity-100"
               />
             </div>
           </motion.div>

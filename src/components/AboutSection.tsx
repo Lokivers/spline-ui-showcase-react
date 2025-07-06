@@ -4,6 +4,7 @@
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Code, Smartphone, Server, Database } from "lucide-react";
+import { EtherealShadow } from "@/components/ui/ethereal-shadow";
 
 export function AboutSection() {
   const skills = [
@@ -34,8 +35,15 @@ export function AboutSection() {
   ];
 
   return (
-    <section id="about" className="py-20 bg-neutral-900">
-      <div className="container mx-auto px-4">
+    <section id="about" className="py-20 relative">
+      <EtherealShadow
+        color="rgba(30, 41, 59, 0.95)"
+        animation={{ scale: 50, speed: 30 }}
+        noise={{ opacity: 0.3, scale: 1 }}
+        className="absolute inset-0"
+      />
+      
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -46,7 +54,7 @@ export function AboutSection() {
           <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 mb-6">
             About Me
           </h2>
-          <p className="text-lg text-neutral-400 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-neutral-200 max-w-3xl mx-auto leading-relaxed">
             I'm a passionate full-stack developer with expertise in building scalable web and mobile applications. 
             With a strong foundation in modern technologies, I love turning complex problems into simple, 
             beautiful, and intuitive solutions.
