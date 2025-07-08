@@ -35,13 +35,13 @@ export function AboutSection() {
   ];
 
   return (
-    <section id="about" className="py-20 relative min-h-screen">
+    <section id="about" className="py-20 relative min-h-screen bg-black/[0.96]">
       {/* Ethereal Shadow Background */}
       <div className="absolute inset-0">
         <EtherealShadow
-          color="rgba(59, 130, 246, 0.15)"
-          animation={{ scale: 80, speed: 40 }}
-          noise={{ opacity: 0.4, scale: 1.5 }}
+          color="rgba(59, 130, 246, 0.08)"
+          animation={{ scale: 60, speed: 35 }}
+          noise={{ opacity: 0.2, scale: 1.3 }}
           sizing="fill"
           className="w-full h-full"
         />
@@ -75,7 +75,7 @@ export function AboutSection() {
               transition={{ delay: index * 0.1, duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <Card className="p-6 bg-black/20 backdrop-blur-sm border-neutral-700/50 hover:border-neutral-600 transition-all duration-300 group hover:scale-105 hover:bg-black/30">
+              <Card className="p-6 bg-black/30 backdrop-blur-sm border-neutral-800/50 hover:border-blue-500/50 transition-all duration-300 group hover:scale-105 hover:bg-black/40">
                 <div className={`w-16 h-16 rounded-lg bg-gradient-to-r ${skill.color} p-4 mb-4 group-hover:scale-110 transition-transform duration-300`}>
                   <div className="text-white">
                     {skill.icon}
