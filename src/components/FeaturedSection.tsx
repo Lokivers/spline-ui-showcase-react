@@ -4,7 +4,7 @@
 import DisplayCards from "@/components/ui/display-cards";
 import { Sparkles, Code, Smartphone, Database } from "lucide-react";
 import { motion } from "framer-motion";
-import { EtherealShadow } from "@/components/ui/ethereal-shadow";
+import { Component as EtherealShadow } from "@/components/ui/ethereal-shadow";
 
 const featuredCards = [
   {
@@ -41,13 +41,17 @@ const featuredCards = [
 
 export function FeaturedSection() {
   return (
-    <section className="py-20 relative overflow-hidden">
-      <EtherealShadow
-        color="rgba(15, 23, 42, 0.98)"
-        animation={{ scale: 80, speed: 40 }}
-        noise={{ opacity: 0.4, scale: 1.5 }}
-        className="absolute inset-0"
-      />
+    <section className="py-20 relative overflow-hidden min-h-screen">
+      {/* Ethereal Shadow Background */}
+      <div className="absolute inset-0">
+        <EtherealShadow
+          color="rgba(147, 51, 234, 0.15)"
+          animation={{ scale: 60, speed: 50 }}
+          noise={{ opacity: 0.3, scale: 1.2 }}
+          sizing="fill"
+          className="w-full h-full"
+        />
+      </div>
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div

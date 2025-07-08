@@ -4,7 +4,7 @@
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Code, Smartphone, Server, Database } from "lucide-react";
-import { EtherealShadow } from "@/components/ui/ethereal-shadow";
+import { Component as EtherealShadow } from "@/components/ui/ethereal-shadow";
 
 export function AboutSection() {
   const skills = [
@@ -35,14 +35,19 @@ export function AboutSection() {
   ];
 
   return (
-    <section id="about" className="py-20 relative">
-      <EtherealShadow
-        color="rgba(30, 41, 59, 0.95)"
-        animation={{ scale: 50, speed: 30 }}
-        noise={{ opacity: 0.3, scale: 1 }}
-        className="absolute inset-0"
-      />
+    <section id="about" className="py-20 relative min-h-screen">
+      {/* Ethereal Shadow Background */}
+      <div className="absolute inset-0">
+        <EtherealShadow
+          color="rgba(59, 130, 246, 0.15)"
+          animation={{ scale: 80, speed: 40 }}
+          noise={{ opacity: 0.4, scale: 1.5 }}
+          sizing="fill"
+          className="w-full h-full"
+        />
+      </div>
       
+      {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -70,7 +75,7 @@ export function AboutSection() {
               transition={{ delay: index * 0.1, duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <Card className="p-6 bg-neutral-800/50 border-neutral-700 hover:border-neutral-600 transition-all duration-300 group hover:scale-105">
+              <Card className="p-6 bg-black/20 backdrop-blur-sm border-neutral-700/50 hover:border-neutral-600 transition-all duration-300 group hover:scale-105 hover:bg-black/30">
                 <div className={`w-16 h-16 rounded-lg bg-gradient-to-r ${skill.color} p-4 mb-4 group-hover:scale-110 transition-transform duration-300`}>
                   <div className="text-white">
                     {skill.icon}
