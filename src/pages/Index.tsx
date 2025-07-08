@@ -5,7 +5,7 @@ import { FeaturedSection } from "@/components/FeaturedSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { GetInTouchSection } from "@/components/GetInTouchSection";
 import { ContactSection } from "@/components/ContactSection";
-import { Footer } from "@/components/Footer";
+import { AnimatedFooter } from "@/components/AnimatedFooter";
 
 const Index = () => {
   return (
@@ -16,7 +16,7 @@ const Index = () => {
       <ProjectsSection />
       <GetInTouchSection />
       <ContactSection />
-      <Footer />
+      <AnimatedFooter />
     </div>
   );
 };

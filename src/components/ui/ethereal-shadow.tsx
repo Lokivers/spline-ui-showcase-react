@@ -193,3 +193,6 @@ export function EtherealShadow({
         </div>
     );
 }
+
+// Also export as Component for backward compatibility
+export const Component = EtherealShadow;
