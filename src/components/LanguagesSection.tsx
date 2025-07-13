@@ -3,6 +3,7 @@
 
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Component as EtherealShadow } from "@/components/ui/ethereal-shadow";
 
 export function LanguagesSection() {
@@ -42,6 +43,12 @@ export function LanguagesSection() {
       level: 87,
       color: "from-gray-400 to-gray-600",
       icon: "▲"
+    },
+    {
+      name: "Flutter",
+      level: 75,
+      color: "from-blue-300 to-blue-500",
+      icon: "💙"
     }
   ];
 
@@ -75,7 +82,52 @@ export function LanguagesSection() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {/* Mobile and Tablet - Scrollable View */}
+        <div className="block lg:hidden">
+          <ScrollArea className="h-[500px] w-full">
+            <div className="flex flex-col space-y-4 pr-4">
+              {languages.map((lang, index) => (
+                <motion.div
+                  key={lang.name}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.8 }}
+                  viewport={{ once: true }}
+                >
+                  <Card className="p-4 bg-black/40 backdrop-blur-sm border-neutral-800/50 hover:border-green-500/50 transition-all duration-300 group hover:scale-[1.02] hover:bg-black/60">
+                    <div className="flex items-center mb-3">
+                      <span className="text-xl mr-3">{lang.icon}</span>
+                      <h3 className="text-lg font-semibold text-white flex-1">
+                        {lang.name}
+                      </h3>
+                      <span className="text-green-400 font-semibold text-sm">
+                        {lang.level}%
+                      </span>
+                    </div>
+                    
+                    <div className="w-full bg-neutral-800 rounded-full h-2 mb-2">
+                      <motion.div
+                        className={`h-2 rounded-full bg-gradient-to-r ${lang.color}`}
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${lang.level}%` }}
+                        transition={{ delay: index * 0.1 + 0.5, duration: 1.5, ease: "easeOut" }}
+                        viewport={{ once: true }}
+                      />
+                    </div>
+                    
+                    <div className="flex justify-between text-xs text-neutral-400">
+                      <span>Beginner</span>
+                      <span>Expert</span>
+                    </div>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </ScrollArea>
+        </div>
+
+        {/* Desktop - Grid View */}
+        <div className="hidden lg:grid lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {languages.map((lang, index) => (
             <motion.div
               key={lang.name}

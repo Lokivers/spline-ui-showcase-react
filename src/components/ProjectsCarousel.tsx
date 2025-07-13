@@ -1,4 +1,3 @@
-
 'use client';
 
 import { motion } from "framer-motion";
@@ -16,12 +15,12 @@ import { Component as EtherealShadow } from "@/components/ui/ethereal-shadow";
 export function ProjectsCarousel() {
   const projects = [
     {
-      title: "E-Commerce Platform",
-      description: "Full-stack e-commerce solution with React, Node.js, and MongoDB. Features include user authentication, payment integration, and admin dashboard.",
+      title: "Travel Home Sphere",
+      description: "Full-stack travel platform with React, Node.js, and MongoDB. Features include user authentication, booking system, and admin dashboard for travel management.",
       image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
       tech: ["React", "Node.js", "MongoDB", "Stripe"],
       liveUrl: "#",
-      githubUrl: "#",
+      githubUrl: "https://github.com/Lokivers/travel-home-sphere.git",
       type: "web"
     },
     {
@@ -164,6 +163,8 @@ export function ProjectsCarousel() {
                             </motion.a>
                             <motion.a
                               href={project.githubUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
                               className="px-3 py-2 text-sm font-medium border border-gray-600 hover:border-purple-500 text-gray-300 hover:text-white rounded-lg transition-all duration-300"
