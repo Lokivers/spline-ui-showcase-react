@@ -1,4 +1,3 @@
-
 'use client';
 
 import { motion, AnimatePresence } from "framer-motion";
@@ -10,7 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { ExternalLink, Github, Smartphone, Globe, Shuffle } from "lucide-react";
+import { Github, Smartphone, Globe, Shuffle } from "lucide-react";
 import { Component as EtherealShadow } from "@/components/ui/ethereal-shadow";
 import { useState, useEffect } from "react";
 
@@ -22,7 +21,6 @@ export function ProjectsCarousel() {
       description: "Full-stack travel platform with React, Node.js, and MongoDB. Features include user authentication, booking system, and admin dashboard for travel management.",
       image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
       tech: ["React", "Node.js", "MongoDB", "Stripe"],
-      liveUrl: "#",
       githubUrl: "https://github.com/Lokivers/travel-home-sphere.git",
       type: "web"
     },
@@ -32,7 +30,6 @@ export function ProjectsCarousel() {
       description: "Modern task management application with real-time collaboration, drag-and-drop functionality, and team workspace features.",
       image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
       tech: ["Next.js", "TypeScript", "PostgreSQL", "Socket.io"],
-      liveUrl: "#",
       githubUrl: "#",
       type: "web"
     },
@@ -42,7 +39,6 @@ export function ProjectsCarousel() {
       description: "Cross-platform mobile app for fitness tracking with workout plans, progress monitoring, and social features.",
       image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
       tech: ["React Native", "Firebase", "Redux", "Charts"],
-      liveUrl: "#",
       githubUrl: "#",
       type: "mobile"
     },
@@ -52,7 +48,6 @@ export function ProjectsCarousel() {
       description: "Intelligent chat interface with AI integration, real-time messaging, and smart response suggestions.",
       image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop",
       tech: ["Vue.js", "Python", "FastAPI", "OpenAI"],
-      liveUrl: "#",
       githubUrl: "#",
       type: "web"
     },
@@ -62,7 +57,6 @@ export function ProjectsCarousel() {
       description: "Comprehensive social media management dashboard with analytics, scheduling, and multi-platform integration.",
       image: "https://images.unsplash.com/photo-1611262588024-d12430b98920?w=600&h=400&fit=crop",
       tech: ["Angular", "Express", "MongoDB", "Charts.js"],
-      liveUrl: "#",
       githubUrl: "#",
       type: "web"
     }
@@ -207,27 +201,18 @@ export function ProjectsCarousel() {
                                 ))}
                               </div>
 
-                              {/* Action Buttons */}
+                              {/* Action Button - Only GitHub */}
                               <div className="flex gap-3 mt-auto">
-                                <motion.a
-                                  href={project.liveUrl}
-                                  whileHover={{ scale: 1.05 }}
-                                  whileTap={{ scale: 0.95 }}
-                                  className="flex-1 inline-flex items-center justify-center px-3 py-2 text-sm font-medium bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white rounded-lg transition-all duration-300 group-hover:shadow-lg group-hover:shadow-purple-500/25"
-                                >
-                                  <ExternalLink className="w-4 h-4 mr-2" />
-                                  <span className="hidden sm:inline">Live Demo</span>
-                                  <span className="sm:hidden">Demo</span>
-                                </motion.a>
                                 <motion.a
                                   href={project.githubUrl}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   whileHover={{ scale: 1.05 }}
                                   whileTap={{ scale: 0.95 }}
-                                  className="px-3 py-2 text-sm font-medium border border-gray-600 hover:border-purple-500 text-gray-300 hover:text-white rounded-lg transition-all duration-300"
+                                  className="flex-1 inline-flex items-center justify-center px-3 py-2 text-sm font-medium border border-gray-600 hover:border-purple-500 text-gray-300 hover:text-white rounded-lg transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-purple-600/10 group-hover:to-blue-600/10"
                                 >
-                                  <Github className="w-4 h-4" />
+                                  <Github className="w-4 h-4 mr-2" />
+                                  <span>View Code</span>
                                 </motion.a>
                               </div>
                             </div>

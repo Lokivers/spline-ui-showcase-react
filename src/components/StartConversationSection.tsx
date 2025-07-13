@@ -4,7 +4,7 @@
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Mail, Phone, MapPin, MessageCircle, Send, Sparkles } from "lucide-react";
+import { Mail, Phone, MapPin, MessageCircle, Send, Sparkles, Heart } from "lucide-react";
 import { Component as EtherealShadow } from "@/components/ui/ethereal-shadow";
 
 export function StartConversationSection() {
@@ -213,6 +213,26 @@ export function StartConversationSection() {
                   >
                     I typically respond within 24 hours
                   </motion.p>
+                </motion.div>
+
+                {/* Made with Love Footer */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.8, duration: 0.8 }}
+                  viewport={{ once: true }}
+                  className="text-center mt-8 pt-6 border-t border-neutral-700/50"
+                >
+                  <div className="flex items-center justify-center gap-2 text-neutral-400 text-sm">
+                    <span>Made with</span>
+                    <motion.div
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    >
+                      <Heart className="w-4 h-4 text-red-500 fill-current" />
+                    </motion.div>
+                    <span>and code</span>
+                  </div>
                 </motion.div>
               </div>
             </Card>
