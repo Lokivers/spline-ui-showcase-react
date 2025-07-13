@@ -12,43 +12,50 @@ export function LanguagesSection() {
       name: "JavaScript",
       level: 95,
       color: "from-yellow-400 to-yellow-600",
-      icon: "🟨"
+      icon: "🟨",
+      glow: "shadow-yellow-500/30"
     },
     {
       name: "TypeScript",
       level: 90,
       color: "from-blue-400 to-blue-600",
-      icon: "🔷"
+      icon: "🔷",
+      glow: "shadow-blue-500/30"
     },
     {
       name: "Python",
       level: 85,
       color: "from-green-400 to-green-600",
-      icon: "🐍"
+      icon: "🐍",
+      glow: "shadow-green-500/30"
     },
     {
       name: "React",
       level: 92,
       color: "from-cyan-400 to-cyan-600",
-      icon: "⚛️"
+      icon: "⚛️",
+      glow: "shadow-cyan-500/30"
     },
     {
       name: "Node.js",
       level: 88,
       color: "from-emerald-400 to-emerald-600",
-      icon: "🟢"
+      icon: "🟢",
+      glow: "shadow-emerald-500/30"
     },
     {
       name: "Next.js",
       level: 87,
       color: "from-gray-400 to-gray-600",
-      icon: "▲"
+      icon: "▲",
+      glow: "shadow-gray-500/30"
     },
     {
       name: "Flutter",
       level: 75,
       color: "from-blue-300 to-blue-500",
-      icon: "💙"
+      icon: "💙",
+      glow: "shadow-blue-400/30"
     }
   ];
 
@@ -74,12 +81,24 @@ export function LanguagesSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500 mb-6">
+          <motion.h2 
+            className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500 mb-6"
+            initial={{ scale: 0.5, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
+            viewport={{ once: true }}
+          >
             Technologies & Languages
-          </h2>
-          <p className="text-lg text-neutral-200 max-w-3xl mx-auto leading-relaxed">
+          </motion.h2>
+          <motion.p 
+            className="text-lg text-neutral-200 max-w-3xl mx-auto leading-relaxed"
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            viewport={{ once: true }}
+          >
             Proficient in modern technologies with hands-on experience in building scalable applications.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Mobile and Tablet - Scrollable View */}
@@ -89,27 +108,40 @@ export function LanguagesSection() {
               {languages.map((lang, index) => (
                 <motion.div
                   key={lang.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1, duration: 0.8 }}
+                  initial={{ opacity: 0, x: -50, rotateY: -30 }}
+                  whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.8, type: "spring" }}
                   viewport={{ once: true }}
+                  whileHover={{ scale: 1.02, rotateY: 5 }}
                 >
-                  <Card className="p-4 bg-black/40 backdrop-blur-sm border-neutral-800/50 hover:border-green-500/50 transition-all duration-300 group hover:scale-[1.02] hover:bg-black/60">
+                  <Card className="p-4 bg-black/40 backdrop-blur-sm border-neutral-800/50 hover:border-green-500/50 transition-all duration-300 group hover:bg-black/60 hover:shadow-lg">
                     <div className="flex items-center mb-3">
-                      <span className="text-xl mr-3">{lang.icon}</span>
+                      <motion.span 
+                        className="text-xl mr-3"
+                        whileHover={{ scale: 1.2, rotate: 10 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        {lang.icon}
+                      </motion.span>
                       <h3 className="text-lg font-semibold text-white flex-1">
                         {lang.name}
                       </h3>
-                      <span className="text-green-400 font-semibold text-sm">
+                      <motion.span 
+                        className="text-green-400 font-semibold text-sm"
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        transition={{ delay: index * 0.1 + 0.5, type: "spring" }}
+                        viewport={{ once: true }}
+                      >
                         {lang.level}%
-                      </span>
+                      </motion.span>
                     </div>
                     
-                    <div className="w-full bg-neutral-800 rounded-full h-2 mb-2">
+                    <div className="w-full bg-neutral-800 rounded-full h-2 mb-2 overflow-hidden">
                       <motion.div
-                        className={`h-2 rounded-full bg-gradient-to-r ${lang.color}`}
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${lang.level}%` }}
+                        className={`h-2 rounded-full bg-gradient-to-r ${lang.color} ${lang.glow} shadow-lg`}
+                        initial={{ width: 0, x: -100 }}
+                        whileInView={{ width: `${lang.level}%`, x: 0 }}
                         transition={{ delay: index * 0.1 + 0.5, duration: 1.5, ease: "easeOut" }}
                         viewport={{ once: true }}
                       />
@@ -131,30 +163,56 @@ export function LanguagesSection() {
           {languages.map((lang, index) => (
             <motion.div
               key={lang.name}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.8 }}
+              initial={{ opacity: 0, y: 50, rotateX: -30 }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.8, type: "spring" }}
               viewport={{ once: true }}
+              whileHover={{ 
+                scale: 1.05, 
+                rotateY: 5,
+                transition: { type: "spring", stiffness: 300 }
+              }}
             >
-              <Card className="p-6 bg-black/40 backdrop-blur-sm border-neutral-800/50 hover:border-green-500/50 transition-all duration-300 group hover:scale-105 hover:bg-black/60">
+              <Card className="p-6 bg-black/40 backdrop-blur-sm border-neutral-800/50 hover:border-green-500/50 transition-all duration-300 group hover:bg-black/60 hover:shadow-2xl">
                 <div className="flex items-center mb-4">
-                  <span className="text-2xl mr-3">{lang.icon}</span>
+                  <motion.span 
+                    className="text-2xl mr-3"
+                    whileHover={{ 
+                      scale: 1.3, 
+                      rotate: 15,
+                      transition: { type: "spring", stiffness: 400 }
+                    }}
+                  >
+                    {lang.icon}
+                  </motion.span>
                   <h3 className="text-xl font-semibold text-white">
                     {lang.name}
                   </h3>
-                  <span className="ml-auto text-green-400 font-semibold">
+                  <motion.span 
+                    className="ml-auto text-green-400 font-semibold"
+                    initial={{ scale: 0, rotate: -180 }}
+                    whileInView={{ scale: 1, rotate: 0 }}
+                    transition={{ delay: index * 0.1 + 0.5, type: "spring", stiffness: 200 }}
+                    viewport={{ once: true }}
+                  >
                     {lang.level}%
-                  </span>
+                  </motion.span>
                 </div>
                 
-                <div className="w-full bg-neutral-800 rounded-full h-3 mb-4">
+                <div className="w-full bg-neutral-800 rounded-full h-3 mb-4 overflow-hidden">
                   <motion.div
-                    className={`h-3 rounded-full bg-gradient-to-r ${lang.color}`}
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${lang.level}%` }}
+                    className={`h-3 rounded-full bg-gradient-to-r ${lang.color} ${lang.glow} shadow-lg relative`}
+                    initial={{ width: 0, x: -100 }}
+                    whileInView={{ width: `${lang.level}%`, x: 0 }}
                     transition={{ delay: index * 0.1 + 0.5, duration: 1.5, ease: "easeOut" }}
                     viewport={{ once: true }}
-                  />
+                  >
+                    <motion.div
+                      className="absolute inset-0 bg-white/20 rounded-full"
+                      animate={{ x: [-100, 100] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                    />
+                  </motion.div>
                 </div>
                 
                 <div className="flex justify-between text-xs text-neutral-400">
