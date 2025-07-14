@@ -10,21 +10,32 @@ import { GetInTouchSection } from "@/components/GetInTouchSection";
 import { StartConversationSection } from "@/components/StartConversationSection";
 import { ContactSection } from "@/components/ContactSection";
 import { AnimatedFooter } from "@/components/AnimatedFooter";
+import { GestureRobot } from "@/components/GestureRobot";
+import { BlendShapeBackground } from "@/components/BlendShapeBackground";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-black">
-      <HeroSection />
-      <AboutSection />
-      <ElaborateAboutSection />
-      <LanguagesSection />
-      <ProjectsCarousel />
-      <AwardsSection />
-      <TimelineSection />
-      <GetInTouchSection />
-      <StartConversationSection />
-      <ContactSection />
-      <AnimatedFooter />
+    <div className="min-h-screen bg-black relative">
+      {/* Blend shape background */}
+      <BlendShapeBackground />
+      
+      {/* Main content */}
+      <div className="relative z-10">
+        <HeroSection />
+        <AboutSection />
+        <ElaborateAboutSection />
+        <LanguagesSection />
+        <ProjectsCarousel />
+        <AwardsSection />
+        <TimelineSection />
+        <GetInTouchSection />
+        <StartConversationSection />
+        <ContactSection />
+        <AnimatedFooter />
+      </div>
+
+      {/* Gesture Robot */}
+      <GestureRobot />
     </div>
   );
 };
