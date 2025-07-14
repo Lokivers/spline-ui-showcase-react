@@ -6,6 +6,7 @@ import { LanguagesSection } from "@/components/LanguagesSection";
 import { ProjectsCarousel } from "@/components/ProjectsCarousel";
 import { AwardsSection } from "@/components/AwardsSection";
 import { TimelineSection } from "@/components/TimelineSection";
+import { GetInTouchSection } from "@/components/GetInTouchSection";
 import { StartConversationSection } from "@/components/StartConversationSection";
 import { ContactSection } from "@/components/ContactSection";
 import { AnimatedFooter } from "@/components/AnimatedFooter";
@@ -20,6 +21,7 @@ const Index = () => {
       <ProjectsCarousel />
       <AwardsSection />
       <TimelineSection />
+      <GetInTouchSection />
       <StartConversationSection />
       <ContactSection />
       <AnimatedFooter />
