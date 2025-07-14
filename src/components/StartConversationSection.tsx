@@ -40,7 +40,7 @@ export function StartConversationSection() {
   };
 
   return (
-    <section className="py-16 md:py-24 relative bg-black/[0.95]">
+    <section className="py-20 relative bg-black/[0.95]">
       {/* Glowing Background Lights */}
       <div className="absolute inset-0 overflow-hidden">
         <EtherealShadow

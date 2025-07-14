@@ -69,7 +69,7 @@ export function TimelineSection() {
   ];
 
   return (
-    <section id="timeline" className="relative min-h-screen bg-black/[0.98]">
+    <section id="timeline" className="relative min-h-screen bg-black/[0.98] py-20">
       {/* Ethereal Shadow Background */}
       <div className="absolute inset-0">
         <EtherealShadow
@@ -81,7 +81,7 @@ export function TimelineSection() {
         />
       </div>
       
-      <div className="relative z-10">
+      <div className="relative z-10 container mx-auto px-4">
         <Timeline data={timelineData} />
       </div>
     </section>

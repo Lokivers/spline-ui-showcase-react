@@ -10,7 +10,7 @@ import { GetInTouchSection } from "@/components/GetInTouchSection";
 import { StartConversationSection } from "@/components/StartConversationSection";
 import { ContactSection } from "@/components/ContactSection";
 import { AnimatedFooter } from "@/components/AnimatedFooter";
-import { GestureRobot } from "@/components/GestureRobot";
+import { FuturisticRobot } from "@/components/FuturisticRobot";
 import { BlendShapeBackground } from "@/components/BlendShapeBackground";
 
 const Index = () => {
@@ -34,8 +34,8 @@ const Index = () => {
         <AnimatedFooter />
       </div>
 
-      {/* Gesture Robot */}
-      <GestureRobot />
+      {/* Futuristic Robot */}
+      <FuturisticRobot />
     </div>
   );
 };
