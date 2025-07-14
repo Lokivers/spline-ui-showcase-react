@@ -1,7 +1,6 @@
 
 'use client';
 
-import { SplineScene } from "@/components/ui/splite";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Volume2, VolumeX } from "lucide-react";
@@ -9,7 +8,6 @@ import { Volume2, VolumeX } from "lucide-react";
 export function GestureRobot() {
   const [isVisible, setIsVisible] = useState(false);
   const [hasGreeted, setHasGreeted] = useState(false);
-  const [sceneError, setSceneError] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
@@ -32,11 +30,13 @@ export function GestureRobot() {
     if (isMuted) return;
     
     const messages = [
-      "Hi there! I'm Blu-chi, your friendly portfolio guide! Logeshwaran is a talented full-stack developer.",
-      "Want to know about his skills? He's proficient in React, Node.js, Python, and many modern technologies!",
-      "Check out his amazing projects below! From web applications to mobile apps, he's built some incredible things.",
-      "Logeshwaran has won multiple awards and has years of experience in software development. Scroll down to see more!",
-      "Need to get in touch? You can find his contact information at the bottom of the page. He'd love to hear from you!"
+      "Hi there! I'm Blu-chi, your friendly portfolio guide! Logeshwaran is a talented full-stack developer with expertise in modern web technologies.",
+      "Want to know about his skills? He's proficient in React, Node.js, Python, JavaScript, TypeScript, and many cutting-edge frameworks and tools!",
+      "Check out his amazing projects below! From web applications to mobile apps, he's built some incredible solutions that showcase his technical prowess.",
+      "Logeshwaran has won multiple awards and has years of experience in software development. His work spans across different industries and technologies!",
+      "Scroll down to see his timeline of achievements, awards, and professional milestones. Each project tells a story of innovation and excellence!",
+      "Need to get in touch? You can find his contact information at the bottom of the page. He'd love to hear about exciting opportunities and collaborations!",
+      "Explore his language proficiencies and technical skills - he's always learning and adapting to the latest technologies in the software development world!"
     ];
     
     const randomMessage = messages[Math.floor(Math.random() * messages.length)];
@@ -54,21 +54,6 @@ export function GestureRobot() {
       speechSynthesis.cancel();
     }
   };
-
-  const handleSceneError = () => {
-    console.log("Spline scene failed to load, falling back to emoji");
-    setSceneError(true);
-  };
-
-  // Force fallback to emoji for now to avoid the loading error
-  useEffect(() => {
-    // Set a timeout to fallback if the scene doesn't load quickly
-    const fallbackTimer = setTimeout(() => {
-      setSceneError(true);
-    }, 3000);
-
-    return () => clearTimeout(fallbackTimer);
-  }, []);
 
   return (
     <motion.div
@@ -93,22 +78,11 @@ export function GestureRobot() {
         
         {/* Glass morphic effect */}
         <div className="relative w-24 h-24 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-2xl group-hover:scale-110 transition-transform duration-300">
-          {/* Spline robot scene or fallback */}
+          {/* Robot emoji - using emoji instead of Spline to avoid loading errors */}
           <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center">
-            {!sceneError ? (
-              <div className="w-full h-full">
-                <SplineScene 
-                  scene="https://prod.spline.design/llK92eHtKBtg4gch/scene.splinecode"
-                  className="w-full h-full scale-125"
-                  onError={handleSceneError}
-                />
-              </div>
-            ) : (
-              // Fallback animated robot emoji
-              <div className="text-4xl animate-bounce hover:animate-pulse transition-all duration-300">
-                🤖
-              </div>
-            )}
+            <div className="text-4xl animate-bounce hover:animate-pulse transition-all duration-300 hover:scale-110">
+              🤖
+            </div>
           </div>
           
           {/* Glowing ring effect */}
