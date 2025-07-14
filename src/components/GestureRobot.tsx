@@ -3,9 +3,22 @@
 
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import { Volume2, VolumeX } from "lucide-react";
+import { Volume2, VolumeX, Mic } from "lucide-react";
+import { SplineScene } from "./ui/splite";
+
+interface SectionMapping {
+  [key: string]: string[];
+}
 
 export function GestureRobot() {
+  const sectionMappings: SectionMapping = {
+    'projects': ['project', 'portfolio', 'work', 'showcase'],
+    'about': ['about', 'introduction', 'bio'],
+    'get-in-touch': ['contact', 'touch', 'reach', 'connect'],
+    'awards': ['award', 'achievement', 'recognition'],
+    'languages': ['language', 'skill', 'technology', 'tech'],
+    'timeline': ['timeline', 'experience', 'history', 'journey']
+  };
   const [isVisible, setIsVisible] = useState(false);
   const [hasGreeted, setHasGreeted] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -25,18 +38,89 @@ export function GestureRobot() {
 
     return () => clearTimeout(timer);
   }, [hasGreeted, isMuted]);
+  const [pressTimer, setPressTimer] = useState<NodeJS.Timeout | null>(null);
+  const [isListening, setIsListening] = useState(false);
 
-  const handleRobotClick = () => {
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+      const utterance = new SpeechSynthesisUtterance(`Scrolling to ${sectionId.replace('-', ' ')} section`);
+      utterance.rate = 0.8;
+      utterance.pitch = 1.2;
+      speechSynthesis.speak(utterance);
+    }
+  };
+
+  const handleVoiceCommand = (transcript: string) => {
+    const command = transcript.toLowerCase();
+    if (command.includes('projects') || command.includes('portfolio')) {
+      scrollToSection('projects');
+    } else if (command.includes('about')) {
+      scrollToSection('about');
+    } else if (command.includes('contact') || command.includes('touch')) {
+      scrollToSection('get-in-touch');
+    } else if (command.includes('awards')) {
+      scrollToSection('awards');
+    } else if (command.includes('languages')) {
+      scrollToSection('languages');
+    } else if (command.includes('timeline')) {
+      scrollToSection('timeline');
+    }
+  };
+
+  const startVoiceRecognition = () => {
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+      const recognition = new SpeechRecognition();
+      
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        handleVoiceCommand(transcript);
+      };
+      
+      recognition.onend = () => {
+        setIsListening(false);
+      };
+      
+      recognition.start();
+      setIsListening(true);
+    }
+  };
+
+  const handleMouseDown = () => {
     if (isMuted) return;
     
+    setPressTimer(setTimeout(() => {
+      startVoiceRecognition();
+      const utterance = new SpeechSynthesisUtterance("Voice navigation activated. Tell me which section you'd like to visit.");
+      utterance.rate = 0.8;
+      utterance.pitch = 1.2;
+      speechSynthesis.speak(utterance);
+    }, 1000));
+  };
+
+  const handleMouseUp = () => {
+    if (pressTimer) {
+      clearTimeout(pressTimer);
+      setPressTimer(null);
+    }
+  };
+
+  const handleRobotClick = () => {
+    if (isMuted || isListening) return;
+    
     const messages = [
-      "Hi there! I'm Blu-chi, your friendly portfolio guide! Logeshwaran is a talented full-stack developer with expertise in modern web technologies.",
-      "Want to know about his skills? He's proficient in React, Node.js, Python, JavaScript, TypeScript, and many cutting-edge frameworks and tools!",
-      "Check out his amazing projects below! From web applications to mobile apps, he's built some incredible solutions that showcase his technical prowess.",
-      "Logeshwaran has won multiple awards and has years of experience in software development. His work spans across different industries and technologies!",
-      "Scroll down to see his timeline of achievements, awards, and professional milestones. Each project tells a story of innovation and excellence!",
-      "Need to get in touch? You can find his contact information at the bottom of the page. He'd love to hear about exciting opportunities and collaborations!",
-      "Explore his language proficiencies and technical skills - he's always learning and adapting to the latest technologies in the software development world!"
+      "Hi there! I'm Blu-chi, your friendly portfolio guide! Logeshwaran is a talented full-stack developer specializing in modern web technologies and AI integration.",
+      "Let me tell you about his expertise! He's mastered React, Node.js, Python, TypeScript, and AI technologies. He creates intelligent, responsive applications that push the boundaries of web development.",
+      "His projects showcase innovation in AI and web development. From AI-powered assistants to real-time collaborative platforms, each project demonstrates technical excellence and creative problem-solving.",
+      "Logeshwaran has received recognition for his contributions to tech innovation. His work combines cutting-edge technologies with practical business solutions!",
+      "His professional journey shows continuous growth and adaptability. Each milestone represents mastery of new technologies and successful project deliveries!",
+      "Want to collaborate? His contact information is below. He's always excited to discuss innovative projects and tech opportunities!",
+      "Press and hold me to activate voice navigation! Just tell me which section you'd like to visit, and I'll take you there!"
     ];
     
     const randomMessage = messages[Math.floor(Math.random() * messages.length)];
@@ -76,17 +160,27 @@ export function GestureRobot() {
         {/* Background blur effect */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-full blur-xl scale-110"></div>
         
-        {/* Glass morphic effect */}
-        <div className="relative w-24 h-24 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-2xl group-hover:scale-110 transition-transform duration-300">
-          {/* Robot emoji - using emoji instead of Spline to avoid loading errors */}
-          <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center">
-            <div className="text-4xl animate-bounce hover:animate-pulse transition-all duration-300 hover:scale-110">
-              🤖
-            </div>
-          </div>
-          
-          {/* Glowing ring effect */}
-          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400/30 to-purple-500/30 animate-pulse"></div>
+
+        {/* Spline 3D Robot Model */}
+        <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden flex items-center justify-center bg-gradient-to-br from-blue-500/10 to-purple-600/10 group-hover:scale-105 transition-transform duration-300">
+          <SplineScene
+            scene="https://prod.spline.design/6K8DjwQXL9XzVjsq/scene.splinecode"
+            className="w-full h-full"
+          />
+          {/* Listening animation */}
+          {isListening && (
+            <motion.div
+              className="absolute inset-0 rounded-full border-4 border-blue-400/60 animate-pulse pointer-events-none"
+              initial={{ opacity: 0.5, scale: 1 }}
+              animate={{ opacity: [0.5, 1, 0.5], scale: [1, 1.1, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            />
+          )}
+        </div>
+
+        {/* Tooltip for interaction */}
+        <div className="absolute left-1/2 -bottom-10 -translate-x-1/2 bg-black/80 text-white px-3 py-1 rounded-full text-xs shadow-lg pointer-events-none select-none">
+          {isListening ? 'Listening... Speak a section name!' : 'Click to chat • Hold to use voice'}
         </div>
 
         {/* Mute/Unmute button */}

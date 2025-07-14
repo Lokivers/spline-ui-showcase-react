@@ -18,7 +18,7 @@ export function GetInTouchSection() {
   };
 
   return (
-    <section id="get-in-touch" className="py-12 md:py-20 relative min-h-screen bg-black/[0.99]">
+    <section id="get-in-touch" className="pt-6 md:pt-10 pb-12 md:pb-20 relative min-h-screen bg-black/[0.99]">
       {/* Ethereal Shadow Background with enhanced glow */}
       <div className="absolute inset-0">
         <EtherealShadow 
