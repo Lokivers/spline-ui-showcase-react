@@ -4,18 +4,20 @@
 import { SplineScene } from "@/components/ui/splite";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { Volume2, VolumeX } from "lucide-react";
 
 export function GestureRobot() {
   const [isVisible, setIsVisible] = useState(false);
   const [hasGreeted, setHasGreeted] = useState(false);
   const [sceneError, setSceneError] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
-      if (!hasGreeted) {
-        // Simulate speech
-        const utterance = new SpeechSynthesisUtterance("Hi, I'm Blu-chi!");
+      if (!hasGreeted && !isMuted) {
+        // Initial greeting
+        const utterance = new SpeechSynthesisUtterance("Hi, I'm Blu-chi! Welcome to Logeshwaran's portfolio. I can tell you about his amazing projects, skills, and experience. Click me anytime to learn more!");
         utterance.rate = 0.8;
         utterance.pitch = 1.2;
         speechSynthesis.speak(utterance);
@@ -24,13 +26,33 @@ export function GestureRobot() {
     }, 2000);
 
     return () => clearTimeout(timer);
-  }, [hasGreeted]);
+  }, [hasGreeted, isMuted]);
 
   const handleRobotClick = () => {
-    const utterance = new SpeechSynthesisUtterance("Hi there! I'm Blu-chi, your friendly assistant!");
+    if (isMuted) return;
+    
+    const messages = [
+      "Hi there! I'm Blu-chi, your friendly portfolio guide! Logeshwaran is a talented full-stack developer.",
+      "Want to know about his skills? He's proficient in React, Node.js, Python, and many modern technologies!",
+      "Check out his amazing projects below! From web applications to mobile apps, he's built some incredible things.",
+      "Logeshwaran has won multiple awards and has years of experience in software development. Scroll down to see more!",
+      "Need to get in touch? You can find his contact information at the bottom of the page. He'd love to hear from you!"
+    ];
+    
+    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+    const utterance = new SpeechSynthesisUtterance(randomMessage);
     utterance.rate = 0.8;
     utterance.pitch = 1.2;
     speechSynthesis.speak(utterance);
+  };
+
+  const handleMuteToggle = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsMuted(!isMuted);
+    if (!isMuted) {
+      // Stop any current speech
+      speechSynthesis.cancel();
+    }
   };
 
   const handleSceneError = () => {
@@ -67,6 +89,7 @@ export function GestureRobot() {
                 <SplineScene 
                   scene="https://prod.spline.design/6Wq5dKlBWEwauGBx/scene.splinecode"
                   className="w-full h-full scale-150"
+                  onError={handleSceneError}
                 />
               </div>
             ) : (
@@ -80,6 +103,21 @@ export function GestureRobot() {
           {/* Glowing ring effect */}
           <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400/30 to-purple-500/30 animate-pulse"></div>
         </div>
+
+        {/* Mute/Unmute button */}
+        <motion.button
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 1, duration: 0.3 }}
+          onClick={handleMuteToggle}
+          className="absolute -top-2 -right-2 w-6 h-6 bg-white/20 backdrop-blur-md border border-white/30 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
+        >
+          {isMuted ? (
+            <VolumeX className="w-3 h-3 text-white" />
+          ) : (
+            <Volume2 className="w-3 h-3 text-white" />
+          )}
+        </motion.button>
 
         {/* Speech bubble */}
         {isVisible && (
