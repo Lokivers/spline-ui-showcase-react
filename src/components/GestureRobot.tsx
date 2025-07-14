@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 export function GestureRobot() {
   const [isVisible, setIsVisible] = useState(false);
   const [hasGreeted, setHasGreeted] = useState(false);
+  const [sceneError, setSceneError] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -30,6 +31,10 @@ export function GestureRobot() {
     utterance.rate = 0.8;
     utterance.pitch = 1.2;
     speechSynthesis.speak(utterance);
+  };
+
+  const handleSceneError = () => {
+    setSceneError(true);
   };
 
   return (
@@ -55,12 +60,21 @@ export function GestureRobot() {
         
         {/* Glass morphic effect */}
         <div className="relative w-24 h-24 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-2xl group-hover:scale-110 transition-transform duration-300">
-          {/* Spline robot scene */}
-          <div className="w-full h-full rounded-full overflow-hidden">
-            <SplineScene 
-              scene="https://prod.spline.design/VJ8ZRnGl-HJ3wfhF/scene.splinecode"
-              className="w-full h-full scale-150"
-            />
+          {/* Spline robot scene or fallback */}
+          <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center">
+            {!sceneError ? (
+              <div className="w-full h-full">
+                <SplineScene 
+                  scene="https://prod.spline.design/6Wq5dKlBWEwauGBx/scene.splinecode"
+                  className="w-full h-full scale-150"
+                />
+              </div>
+            ) : (
+              // Fallback robot emoji/icon
+              <div className="text-4xl animate-bounce">
+                🤖
+              </div>
+            )}
           </div>
           
           {/* Glowing ring effect */}
