@@ -56,8 +56,19 @@ export function GestureRobot() {
   };
 
   const handleSceneError = () => {
+    console.log("Spline scene failed to load, falling back to emoji");
     setSceneError(true);
   };
+
+  // Force fallback to emoji for now to avoid the loading error
+  useEffect(() => {
+    // Set a timeout to fallback if the scene doesn't load quickly
+    const fallbackTimer = setTimeout(() => {
+      setSceneError(true);
+    }, 3000);
+
+    return () => clearTimeout(fallbackTimer);
+  }, []);
 
   return (
     <motion.div
@@ -87,14 +98,14 @@ export function GestureRobot() {
             {!sceneError ? (
               <div className="w-full h-full">
                 <SplineScene 
-                  scene="https://prod.spline.design/6Wq5dKlBWEwauGBx/scene.splinecode"
-                  className="w-full h-full scale-150"
+                  scene="https://prod.spline.design/llK92eHtKBtg4gch/scene.splinecode"
+                  className="w-full h-full scale-125"
                   onError={handleSceneError}
                 />
               </div>
             ) : (
-              // Fallback robot emoji/icon
-              <div className="text-4xl animate-bounce">
+              // Fallback animated robot emoji
+              <div className="text-4xl animate-bounce hover:animate-pulse transition-all duration-300">
                 🤖
               </div>
             )}
