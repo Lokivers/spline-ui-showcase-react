@@ -4,7 +4,6 @@
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Progress } from "@/components/ui/progress";
 import { Component as EtherealShadow } from "@/components/ui/ethereal-shadow";
 
 export function LanguagesSection() {
@@ -109,11 +108,11 @@ export function LanguagesSection() {
           </motion.p>
         </motion.div>
 
-        {/* Mobile and Tablet - Scrollable View with Animations */}
+        {/* Mobile and Tablet - Scrollable Two Column View */}
         <div className="block lg:hidden">
-          <ScrollArea className="h-[500px] w-full">
+          <ScrollArea className="h-[600px] w-full">
             <motion.div 
-              className="flex flex-col space-y-4 pr-4"
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4 pr-4"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.8 }}
@@ -122,19 +121,18 @@ export function LanguagesSection() {
               {languages.map((lang, index) => (
                 <motion.div
                   key={lang.name}
-                  initial={{ opacity: 0, x: -50, rotateY: -30 }}
-                  whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1, duration: 0.8, type: "spring" }}
                   viewport={{ once: true }}
-                  whileHover={{ scale: 1.02, rotateY: 5 }}
+                  whileHover={{ scale: 1.02 }}
                 >
-                  <Card className="p-4 bg-black/40 backdrop-blur-sm border-neutral-800/50 hover:border-green-500/50 transition-all duration-300 group hover:bg-black/60 hover:shadow-lg">
-                    <div className="flex items-center mb-3">
-                      <div className="flex items-center space-x-2 mr-3">
-                        {/* Better logo display for JS/TS */}
+                  <Card className="p-4 bg-black/40 backdrop-blur-sm border-neutral-800/50 hover:border-green-500/50 transition-all duration-300 group hover:bg-black/60 hover:shadow-lg h-full">
+                    <div className="flex flex-col items-center text-center space-y-3">
+                      <div className="flex items-center justify-center">
                         {lang.name === "JavaScript" ? (
                           <motion.div 
-                            className="w-8 h-8 bg-yellow-400 text-black rounded font-bold text-sm flex items-center justify-center"
+                            className="w-12 h-12 bg-yellow-400 text-black rounded-lg font-bold text-lg flex items-center justify-center shadow-lg"
                             whileHover={{ scale: 1.2, rotate: 10 }}
                             transition={{ type: "spring", stiffness: 300 }}
                           >
@@ -142,7 +140,7 @@ export function LanguagesSection() {
                           </motion.div>
                         ) : lang.name === "TypeScript" ? (
                           <motion.div 
-                            className="w-8 h-8 bg-blue-500 text-white rounded font-bold text-sm flex items-center justify-center"
+                            className="w-12 h-12 bg-blue-500 text-white rounded-lg font-bold text-lg flex items-center justify-center shadow-lg"
                             whileHover={{ scale: 1.2, rotate: 10 }}
                             transition={{ type: "spring", stiffness: 300 }}
                           >
@@ -150,7 +148,7 @@ export function LanguagesSection() {
                           </motion.div>
                         ) : (
                           <motion.span 
-                            className="text-xl"
+                            className="text-3xl"
                             whileHover={{ scale: 1.2, rotate: 10 }}
                             transition={{ type: "spring", stiffness: 300 }}
                           >
@@ -158,11 +156,13 @@ export function LanguagesSection() {
                           </motion.span>
                         )}
                       </div>
-                      <h3 className="text-lg font-semibold text-white flex-1">
+                      
+                      <h3 className="text-lg font-semibold text-white">
                         {lang.name}
                       </h3>
+                      
                       <motion.span 
-                        className="text-green-400 font-semibold text-sm bg-green-400/10 px-2 py-1 rounded-full"
+                        className="text-green-400 font-semibold text-lg bg-green-400/10 px-3 py-1 rounded-full"
                         initial={{ scale: 0 }}
                         whileInView={{ scale: 1 }}
                         transition={{ delay: index * 0.1 + 0.5, type: "spring" }}
@@ -171,16 +171,6 @@ export function LanguagesSection() {
                         {lang.level}%
                       </motion.span>
                     </div>
-                    
-                    <Progress 
-                      value={lang.level} 
-                      className="h-3 mb-2 bg-neutral-800"
-                    />
-                    
-                    <div className="flex justify-between text-xs text-neutral-400">
-                      <span>Beginner</span>
-                      <span>Expert</span>
-                    </div>
                   </Card>
                 </motion.div>
               ))}
@@ -188,88 +178,109 @@ export function LanguagesSection() {
           </ScrollArea>
         </div>
 
-        {/* Desktop - Grid View */}
-        <div className="hidden lg:grid lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {languages.map((lang, index) => (
-            <motion.div
-              key={lang.name}
-              initial={{ opacity: 0, y: 50, rotateX: -30 }}
-              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.8, type: "spring" }}
-              viewport={{ once: true }}
-              whileHover={{ 
-                scale: 1.05, 
-                rotateY: 5,
-                transition: { type: "spring", stiffness: 300 }
-              }}
-            >
-              <Card className="p-6 bg-black/40 backdrop-blur-sm border-neutral-800/50 hover:border-green-500/50 transition-all duration-300 group hover:bg-black/60 hover:shadow-2xl">
-                <div className="flex items-center mb-4">
-                  <div className="flex items-center space-x-2 mr-3">
-                    {/* Better logo display for JS/TS */}
-                    {lang.name === "JavaScript" ? (
-                      <motion.div 
-                        className="w-10 h-10 bg-yellow-400 text-black rounded-lg font-bold text-lg flex items-center justify-center shadow-lg"
-                        whileHover={{ 
-                          scale: 1.3, 
-                          rotate: 15,
-                          transition: { type: "spring", stiffness: 400 }
-                        }}
-                      >
-                        JS
-                      </motion.div>
-                    ) : lang.name === "TypeScript" ? (
-                      <motion.div 
-                        className="w-10 h-10 bg-blue-500 text-white rounded-lg font-bold text-lg flex items-center justify-center shadow-lg"
-                        whileHover={{ 
-                          scale: 1.3, 
-                          rotate: 15,
-                          transition: { type: "spring", stiffness: 400 }
-                        }}
-                      >
-                        TS
-                      </motion.div>
-                    ) : (
-                      <motion.span 
-                        className="text-2xl"
-                        whileHover={{ 
-                          scale: 1.3, 
-                          rotate: 15,
-                          transition: { type: "spring", stiffness: 400 }
-                        }}
-                      >
-                        {lang.icon}
-                      </motion.span>
-                    )}
-                  </div>
-                  <div className="flex-1">
+        {/* Desktop - Two Row Grid View */}
+        <div className="hidden lg:block max-w-6xl mx-auto">
+          {/* First Row - 4 items */}
+          <div className="grid grid-cols-4 gap-6 mb-6">
+            {languages.slice(0, 4).map((lang, index) => (
+              <motion.div
+                key={lang.name}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.8, type: "spring" }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <Card className="p-6 bg-black/40 backdrop-blur-sm border-neutral-800/50 hover:border-green-500/50 transition-all duration-300 group hover:bg-black/60 hover:shadow-2xl h-full">
+                  <div className="flex flex-col items-center text-center space-y-4">
+                    <div className="flex items-center justify-center">
+                      {lang.name === "JavaScript" ? (
+                        <motion.div 
+                          className="w-14 h-14 bg-yellow-400 text-black rounded-lg font-bold text-xl flex items-center justify-center shadow-lg"
+                          whileHover={{ scale: 1.3, rotate: 15 }}
+                          transition={{ type: "spring", stiffness: 400 }}
+                        >
+                          JS
+                        </motion.div>
+                      ) : lang.name === "TypeScript" ? (
+                        <motion.div 
+                          className="w-14 h-14 bg-blue-500 text-white rounded-lg font-bold text-xl flex items-center justify-center shadow-lg"
+                          whileHover={{ scale: 1.3, rotate: 15 }}
+                          transition={{ type: "spring", stiffness: 400 }}
+                        >
+                          TS
+                        </motion.div>
+                      ) : (
+                        <motion.span 
+                          className="text-4xl"
+                          whileHover={{ scale: 1.3, rotate: 15 }}
+                          transition={{ type: "spring", stiffness: 400 }}
+                        >
+                          {lang.icon}
+                        </motion.span>
+                      )}
+                    </div>
+                    
                     <h3 className="text-xl font-semibold text-white">
                       {lang.name}
                     </h3>
+                    
+                    <motion.span 
+                      className="text-green-400 font-semibold text-lg bg-green-400/10 px-3 py-1 rounded-full"
+                      initial={{ scale: 0, rotate: -180 }}
+                      whileInView={{ scale: 1, rotate: 0 }}
+                      transition={{ delay: index * 0.1 + 0.5, type: "spring", stiffness: 200 }}
+                      viewport={{ once: true }}
+                    >
+                      {lang.level}%
+                    </motion.span>
                   </div>
-                  <motion.span 
-                    className="text-green-400 font-semibold text-lg bg-green-400/10 px-3 py-1 rounded-full"
-                    initial={{ scale: 0, rotate: -180 }}
-                    whileInView={{ scale: 1, rotate: 0 }}
-                    transition={{ delay: index * 0.1 + 0.5, type: "spring", stiffness: 200 }}
-                    viewport={{ once: true }}
-                  >
-                    {lang.level}%
-                  </motion.span>
-                </div>
-                
-                <Progress 
-                  value={lang.level} 
-                  className="h-4 mb-4 bg-neutral-800"
-                />
-                
-                <div className="flex justify-between text-xs text-neutral-400">
-                  <span>Beginner</span>
-                  <span>Expert</span>
-                </div>
-              </Card>
-            </motion.div>
-          ))}
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+          
+          {/* Second Row - 3 items centered */}
+          <div className="grid grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {languages.slice(4).map((lang, index) => (
+              <motion.div
+                key={lang.name}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: (index + 4) * 0.1, duration: 0.8, type: "spring" }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <Card className="p-6 bg-black/40 backdrop-blur-sm border-neutral-800/50 hover:border-green-500/50 transition-all duration-300 group hover:bg-black/60 hover:shadow-2xl h-full">
+                  <div className="flex flex-col items-center text-center space-y-4">
+                    <div className="flex items-center justify-center">
+                      <motion.span 
+                        className="text-4xl"
+                        whileHover={{ scale: 1.3, rotate: 15 }}
+                        transition={{ type: "spring", stiffness: 400 }}
+                      >
+                        {lang.icon}
+                      </motion.span>
+                    </div>
+                    
+                    <h3 className="text-xl font-semibold text-white">
+                      {lang.name}
+                    </h3>
+                    
+                    <motion.span 
+                      className="text-green-400 font-semibold text-lg bg-green-400/10 px-3 py-1 rounded-full"
+                      initial={{ scale: 0, rotate: -180 }}
+                      whileInView={{ scale: 1, rotate: 0 }}
+                      transition={{ delay: (index + 4) * 0.1 + 0.5, type: "spring", stiffness: 200 }}
+                      viewport={{ once: true }}
+                    >
+                      {lang.level}%
+                    </motion.span>
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
