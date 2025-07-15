@@ -7,6 +7,7 @@ import { ProjectsCarousel } from "@/components/ProjectsCarousel";
 import { AwardsSection } from "@/components/AwardsSection";
 import { TimelineSection } from "@/components/TimelineSection";
 import { GetInTouchSection } from "@/components/GetInTouchSection";
+import { DownloadResumeSection } from "@/components/DownloadResumeSection";
 import { StartConversationSection } from "@/components/StartConversationSection";
 import { ContactSection } from "@/components/ContactSection";
 import { AnimatedFooter } from "@/components/AnimatedFooter";
@@ -29,6 +30,7 @@ const Index = () => {
         <AwardsSection />
         <TimelineSection />
         <GetInTouchSection />
+        <DownloadResumeSection />
         <StartConversationSection />
         <ContactSection />
         <AnimatedFooter />
