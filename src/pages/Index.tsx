@@ -6,12 +6,11 @@ import { LanguagesSection } from "@/components/LanguagesSection";
 import { ProjectsCarousel } from "@/components/ProjectsCarousel";
 import { AwardsSection } from "@/components/AwardsSection";
 import { TimelineSection } from "@/components/TimelineSection";
-import { GetInTouchSection } from "@/components/GetInTouchSection";
 import { DownloadResumeSection } from "@/components/DownloadResumeSection";
 import { StartConversationSection } from "@/components/StartConversationSection";
 import { ContactSection } from "@/components/ContactSection";
 import { AnimatedFooter } from "@/components/AnimatedFooter";
-import { FuturisticRobot } from "@/components/FuturisticRobot";
+import { GestureRobot } from "@/components/GestureRobot";
 import { BlendShapeBackground } from "@/components/BlendShapeBackground";
 
 const Index = () => {
@@ -29,15 +28,14 @@ const Index = () => {
         <ProjectsCarousel />
         <AwardsSection />
         <TimelineSection />
-        <GetInTouchSection />
         <DownloadResumeSection />
         <StartConversationSection />
         <ContactSection />
         <AnimatedFooter />
       </div>
 
-      {/* Futuristic Robot */}
-      <FuturisticRobot />
+      {/* Gesture Robot */}
+      <GestureRobot />
     </div>
   );
 };
