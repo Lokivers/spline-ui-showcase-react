@@ -20,7 +20,7 @@ export function DownloadResumeSection() {
   };
 
   return (
-    <section id="resume" className="py-20 relative bg-black/[0.99]">
+    <section id="resume" className="py-10 relative bg-black/[0.99]">
       {/* Ethereal Shadow Background */}
       <div className="absolute inset-0">
         <EtherealShadow 
@@ -102,7 +102,7 @@ export function DownloadResumeSection() {
               <h3 className="text-white font-semibold mb-2">Quick Preview</h3>
               <p className="text-neutral-300 text-sm">View before downloading to see what's included</p>
             </div>
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

@@ -19,7 +19,7 @@ export function FuturisticRobot() {
     const timer = setTimeout(() => {
       setIsVisible(true);
       if (!hasGreeted && !isMuted) {
-        speak("Hello! I'm your AI portfolio assistant. I can help you navigate through Logeshwaran's portfolio and answer questions about his experience, skills, and projects. Click me or say 'Hey Assistant' to get started!");
+        speak("Hello! I'm Blu-chi, your AI portfolio assistant. Say 'Hey Blu-chi' followed by a section name to navigate, or click me to learn about Logeshwaran's amazing work!");
         setHasGreeted(true);
       }
     }, 2000);
@@ -86,35 +86,36 @@ export function FuturisticRobot() {
   const handleVoiceCommand = (command: string) => {
     console.log('Voice command received:', command);
     
-    if (command.includes('hey assistant') || command.includes('hello')) {
+    if (command.includes('hey blu-chi') || command.includes('hey bluci') || command.includes('hey blue chi')) {
       triggerWave();
-      speak("Yes, how can I help you navigate Logeshwaran's portfolio?");
-    } else if (command.includes('about') || command.includes('introduction')) {
-      scrollToSection('about');
-      speak("Here's Logeshwaran's introduction and background. He's a passionate full-stack developer with expertise in modern web technologies.");
-    } else if (command.includes('project') || command.includes('work')) {
-      scrollToSection('projects');
-      speak("Let me show you Logeshwaran's amazing projects. He has built various web applications using React, Node.js, and other cutting-edge technologies.");
-    } else if (command.includes('skill') || command.includes('language')) {
-      scrollToSection('languages');
-      speak("Here are Logeshwaran's technical skills and programming languages. He's proficient in JavaScript, TypeScript, Python, and many modern frameworks.");
-    } else if (command.includes('award') || command.includes('achievement')) {
-      scrollToSection('awards');
-      speak("These are Logeshwaran's awards and achievements. He has won multiple competitions and recognition for his technical excellence.");
-    } else if (command.includes('timeline') || command.includes('experience')) {
-      scrollToSection('timeline');
-      speak("Here's Logeshwaran's educational and professional timeline, showcasing his journey from student to skilled developer.");
-    } else if (command.includes('contact') || command.includes('touch')) {
-      scrollToSection('get-in-touch');
-      speak("Here's how you can get in touch with Logeshwaran. He's always open to discussing new opportunities and collaborations.");
-    } else if (command.includes('resume') || command.includes('download')) {
-      scrollToSection('resume');
-      speak("You can download Logeshwaran's professional resume here. It contains all his experience, skills, and contact information.");
+      
+      if (command.includes('about') || command.includes('introduction')) {
+        scrollToSection('about');
+        speak("Here's Logeshwaran's introduction and background. He's a passionate full-stack developer with expertise in modern web technologies.");
+      } else if (command.includes('project') || command.includes('work')) {
+        scrollToSection('projects');
+        speak("Let me show you Logeshwaran's amazing projects. He has built various web applications using React, Node.js, and other cutting-edge technologies.");
+      } else if (command.includes('skill') || command.includes('language')) {
+        scrollToSection('languages');
+        speak("Here are Logeshwaran's technical skills and programming languages. He's proficient in JavaScript, TypeScript, Python, and many modern frameworks.");
+      } else if (command.includes('award') || command.includes('achievement')) {
+        scrollToSection('awards');
+        speak("These are Logeshwaran's awards and achievements. He has won multiple competitions and recognition for his technical excellence.");
+      } else if (command.includes('timeline') || command.includes('experience')) {
+        scrollToSection('timeline');
+        speak("Here's Logeshwaran's educational and professional timeline, showcasing his journey from student to skilled developer.");
+      } else if (command.includes('contact') || command.includes('touch')) {
+        scrollToSection('get-in-touch');
+        speak("Here's how you can get in touch with Logeshwaran. He's always open to discussing new opportunities and collaborations.");
+      } else if (command.includes('resume') || command.includes('download')) {
+        scrollToSection('resume');
+        speak("You can download Logeshwaran's professional resume here. It contains all his experience, skills, and contact information.");
+      } else {
+        speak("Hi! I'm Blu-chi. You can say things like 'Hey Blu-chi, show me projects' or 'Hey Blu-chi, go to contact' to navigate different sections.");
+      }
     } else if (command.includes('mute') || command.includes('quiet')) {
       setIsMuted(true);
       setIsListening(false);
-    } else {
-      speak("I can help you navigate to different sections: About, Projects, Skills, Awards, Timeline, Contact, or Resume. Just tell me where you'd like to go!");
     }
   };
 
@@ -136,12 +137,12 @@ export function FuturisticRobot() {
     triggerWave();
     
     const portfolioMessages = [
-      "Hi! I'm your portfolio guide. Ask me about Logeshwaran's projects, skills, or experience. You can also use voice commands like 'show me projects' or 'go to contact'.",
-      "Want to know about his technical stack? Logeshwaran specializes in React, Node.js, TypeScript, Python, and modern web development frameworks.",
-      "Interested in his achievements? He has won multiple coding competitions and has years of hands-on development experience.",
-      "Looking for his work? Check out his diverse project portfolio ranging from web applications to mobile solutions.",
-      "Need his contact info? I can navigate you to the contact section where you'll find all his professional details.",
-      "Want to download his resume? I can take you to the download section for his latest professional resume."
+      "Hi! I'm Blu-chi, your portfolio guide. Say 'Hey Blu-chi' followed by section names like 'projects', 'about', 'skills', or 'contact' to navigate around!",
+      "Want to know about Logeshwaran's technical expertise? He specializes in React, Node.js, TypeScript, Python, and cutting-edge web development frameworks.",
+      "Interested in his achievements? He has won multiple coding competitions and has years of hands-on development experience building innovative solutions.",
+      "Looking for his work? Check out his diverse project portfolio ranging from web applications to mobile solutions, each showcasing technical excellence.",
+      "Need his contact info? Just say 'Hey Blu-chi, contact' and I'll take you to his professional contact details.",
+      "Want to download his resume? Say 'Hey Blu-chi, resume' and I'll navigate you to the download section for his latest professional resume."
     ];
     
     const randomMessage = portfolioMessages[Math.floor(Math.random() * portfolioMessages.length)];
@@ -176,7 +177,7 @@ export function FuturisticRobot() {
       if (recognitionRef.current) {
         recognitionRef.current.start();
       }
-      speak("I'm listening. You can say commands like 'show me projects', 'go to about', or 'contact information'.");
+      speak("I'm listening. Say 'Hey Blu-chi' followed by commands like 'show me projects', 'go to about', or 'contact information'.");
     }
   };
 
@@ -377,7 +378,7 @@ export function FuturisticRobot() {
             transition={{ delay: 0.5, duration: 0.5 }}
             className="absolute -top-24 -left-40 bg-slate-800/98 backdrop-blur-sm text-cyan-100 px-5 py-4 rounded-2xl text-sm font-medium shadow-2xl border border-cyan-400/40 max-w-56"
           >
-            {currentMessage || "Hi! I'm your AI portfolio assistant 🤖"}
+            {currentMessage || "Hi! I'm Blu-chi, your AI assistant 🤖"}
             <div className="absolute bottom-0 right-10 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-slate-800/98 transform translate-y-full"></div>
           </motion.div>
         )}
