@@ -102,7 +102,7 @@ export function DownloadResumeSection() {
               <h3 className="text-white font-semibold mb-2">Quick Preview</h3>
               <p className="text-neutral-300 text-sm">View before downloading to see what's included</p>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
