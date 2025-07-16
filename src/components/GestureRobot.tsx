@@ -18,7 +18,7 @@ export function GestureRobot() {
     const timer = setTimeout(() => {
       setIsVisible(true);
       if (!hasGreeted && !isMuted) {
-        speak("Hello! I'm your AI assistant. Say 'Hey robot' followed by commands like 'show projects', 'go to about', or 'contact' to navigate!");
+        speak("Hello! I'm Blue-chi! 🤖 I'm here to tell you all about Logeshwaran's amazing work and skills. Click me or say 'Hey Blue-chi' to learn more!");
         setHasGreeted(true);
         triggerWave();
       }
@@ -47,9 +47,6 @@ export function GestureRobot() {
 
       recognitionRef.current.onerror = (event: any) => {
         console.error('Speech recognition error:', event.error);
-        if (event.error === 'no-speech') {
-          speak("I didn't hear anything. Please try again.");
-        }
         setIsListening(false);
       };
 
@@ -71,7 +68,7 @@ export function GestureRobot() {
     speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.rate = 0.9;
-    utterance.pitch = 1.1;
+    utterance.pitch = 1.2;
     utterance.volume = 0.8;
     speechSynthesis.speak(utterance);
     setCurrentMessage(text.substring(0, 80) + "...");
@@ -93,46 +90,37 @@ export function GestureRobot() {
     triggerWave();
     
     // Check for wake word
-    if (command.includes('hey robot') || command.includes('robot')) {
-      if (command.includes('about') || command.includes('introduction')) {
+    if (command.includes('hey blue-chi') || command.includes('blue chi') || command.includes('bluci')) {
+      if (command.includes('about') || command.includes('who')) {
         if (scrollToSection('about')) {
-          speak("Here's information about Logeshwaran. He's a skilled full-stack developer with expertise in modern web technologies.");
+          speak("Let me tell you about Logeshwaran! He's an incredible full-stack developer who loves creating amazing digital experiences. His passion for technology shines through every project he builds!");
         }
       } else if (command.includes('project') || command.includes('work') || command.includes('portfolio')) {
         if (scrollToSection('projects')) {
-          speak("Here are Logeshwaran's amazing projects showcasing his development skills and creativity.");
+          speak("Oh, you'll love Logeshwaran's projects! He's built some truly impressive applications using React, Node.js, and modern web technologies. Each project showcases his creativity and technical expertise!");
         }
       } else if (command.includes('skill') || command.includes('language') || command.includes('tech')) {
         if (scrollToSection('languages')) {
-          speak("These are Logeshwaran's technical skills and programming languages he's mastered.");
+          speak("Logeshwaran is skilled in so many technologies! He's a master of JavaScript, TypeScript, Python, React, and many cutting-edge frameworks. His technical versatility is truly impressive!");
         }
       } else if (command.includes('award') || command.includes('achievement')) {
         if (scrollToSection('awards')) {
-          speak("Here are Logeshwaran's awards and achievements in technology and development.");
+          speak("Logeshwaran has earned some amazing recognition for his work! His dedication to excellence has been acknowledged through various awards and achievements in the tech industry!");
         }
-      } else if (command.includes('timeline') || command.includes('experience') || command.includes('education')) {
+      } else if (command.includes('journey') || command.includes('timeline') || command.includes('story')) {
         if (scrollToSection('timeline')) {
-          speak("This shows Logeshwaran's educational and professional journey through the years.");
+          speak("Here's Logeshwaran's inspiring journey! From his educational foundation to becoming a skilled developer, every step shows his commitment to growth and learning!");
         }
-      } else if (command.includes('contact') || command.includes('reach') || command.includes('email')) {
+      } else if (command.includes('contact') || command.includes('reach') || command.includes('hire')) {
         if (scrollToSection('contact')) {
-          speak("Here's how you can get in touch with Logeshwaran for collaborations and opportunities.");
+          speak("Want to work with Logeshwaran? Great choice! Here's how you can reach out to him for exciting opportunities and collaborations!");
         }
       } else if (command.includes('resume') || command.includes('download') || command.includes('cv')) {
         if (scrollToSection('resume')) {
-          speak("You can download Logeshwaran's professional resume from this section.");
+          speak("You can download Logeshwaran's professional resume here! It contains all the details about his amazing skills and experience!");
         }
-      } else if (command.includes('top') || command.includes('home') || command.includes('start')) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        speak("Going back to the top of the page.");
       } else {
-        speak("Hi! I can help you navigate. Try saying 'Hey robot, show projects' or 'Hey robot, go to about' to explore different sections.");
-      }
-    } else if (command.includes('stop') || command.includes('quiet') || command.includes('mute')) {
-      setIsMuted(true);
-      setIsListening(false);
-      if (recognitionRef.current) {
-        recognitionRef.current.stop();
+        speak("Hi! I'm Blue-chi, and I love talking about Logeshwaran's work! Try saying 'Hey Blue-chi, show me projects' or 'Hey Blue-chi, tell me about skills' to explore his amazing portfolio!");
       }
     }
   };
@@ -147,16 +135,16 @@ export function GestureRobot() {
     
     triggerWave();
     
-    const messages = [
-      "Hi! I'm your voice-controlled navigation assistant. Say 'Hey robot' followed by section names to navigate around the portfolio.",
-      "Want to explore Logeshwaran's work? Say 'Hey robot, show projects' to see his amazing development projects.",
-      "Curious about his skills? Try 'Hey robot, show skills' to learn about his technical expertise.",
-      "Need contact info? Just say 'Hey robot, contact' and I'll take you there instantly.",
-      "Say 'Hey robot, timeline' to see his educational and professional journey.",
-      "You can also say 'Hey robot, awards' to view his achievements and recognition."
+    const workMessages = [
+      "Hi! I'm Blue-chi! 🤖 I'm so excited to tell you about Logeshwaran's incredible work! He's a talented full-stack developer who creates amazing digital experiences!",
+      "Want to see something cool? Logeshwaran has built some fantastic projects using React, Node.js, and modern web technologies. Each one shows his creativity and skill!",
+      "Did you know Logeshwaran is skilled in JavaScript, TypeScript, Python, and so many other technologies? His technical expertise is truly impressive!",
+      "Logeshwaran has won awards and recognition for his excellent work in development! His dedication to quality really shows in everything he creates!",
+      "Looking to hire a skilled developer? Logeshwaran would be perfect for your next project! His passion for technology and problem-solving is amazing!",
+      "I love talking about Logeshwaran's journey from student to skilled developer! His growth and learning mindset make him such a valuable team member!"
     ];
     
-    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+    const randomMessage = workMessages[Math.floor(Math.random() * workMessages.length)];
     speak(randomMessage);
   };
 
@@ -183,13 +171,13 @@ export function GestureRobot() {
       if (recognitionRef.current) {
         recognitionRef.current.stop();
       }
-      speak("Voice navigation stopped.");
+      speak("Voice chat stopped! Click me anytime to learn more about Logeshwaran's work!");
     } else {
       setIsListening(true);
       if (recognitionRef.current) {
         try {
           recognitionRef.current.start();
-          speak("Voice navigation activated! Say 'Hey robot' followed by commands like 'show projects' or 'go to about'.");
+          speak("Voice chat activated! Say 'Hey Blue-chi' and ask me about Logeshwaran's projects, skills, or anything else!");
         } catch (error) {
           console.error('Failed to start recognition:', error);
           setIsListening(false);
@@ -215,108 +203,67 @@ export function GestureRobot() {
       onClick={handleRobotClick}
     >
       <div className="relative">
-        {/* Enhanced holographic glow */}
-        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/30 via-blue-500/20 to-teal-400/30 rounded-3xl blur-xl scale-110 animate-pulse"></div>
+        {/* Soft emoji-like glow */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-400/40 via-cyan-400/30 to-indigo-400/40 rounded-full blur-xl scale-110 animate-pulse"></div>
         
-        {/* Robot container with gesture-based design */}
-        <div className="relative w-32 h-40 bg-gradient-to-b from-slate-800/95 to-slate-900/95 backdrop-blur-lg border border-cyan-400/50 rounded-3xl shadow-2xl group-hover:scale-105 transition-all duration-300 overflow-hidden">
+        {/* Emoji-style robot container */}
+        <div className="relative w-28 h-36 bg-gradient-to-b from-blue-100/95 to-blue-200/95 backdrop-blur-lg border-2 border-blue-300/60 rounded-3xl shadow-2xl group-hover:scale-110 transition-all duration-300 overflow-hidden">
           
-          {/* Circuit pattern background */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-2 left-2 w-6 h-6 border border-cyan-400/40 rounded-full"></div>
-            <div className="absolute top-4 right-3 w-4 h-4 border border-blue-400/40 rounded-sm"></div>
-            <div className="absolute bottom-6 left-3 w-5 h-5 border border-teal-400/40 rounded-full"></div>
-          </div>
-
-          {/* Robot head with cute design */}
-          <div className="relative mt-3 mx-auto w-20 h-16 bg-gradient-to-b from-slate-700/90 to-slate-800/90 rounded-2xl border border-cyan-400/60 shadow-lg">
-            {/* Antenna */}
-            <motion.div 
-              className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-1 h-4 bg-gradient-to-t from-cyan-400 to-blue-500 rounded-full"
-              animate={{ scaleY: [1, 1.3, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-            <motion.div 
-              className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-cyan-400 rounded-full animate-pulse"
-              animate={{ scale: [1, 1.4, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            />
-
-            {/* Eyes with emotion */}
-            <div className="flex justify-center items-center pt-3 gap-3">
+          {/* Simple emoji-style face */}
+          <div className="relative mt-4 mx-auto w-20 h-20 bg-gradient-to-b from-blue-50/90 to-blue-100/90 rounded-full border-2 border-blue-300/60 shadow-lg flex flex-col items-center justify-center">
+            
+            {/* Simple emoji eyes */}
+            <div className="flex justify-center items-center gap-3 mb-2">
               <motion.div 
-                className="w-3 h-3 bg-cyan-400 rounded-full shadow-lg shadow-cyan-400/50"
+                className="w-4 h-4 bg-blue-600 rounded-full"
                 animate={{ 
-                  scaleY: isListening ? [1, 0.3, 1] : [1, 0.8, 1],
-                  scaleX: isWaving ? [1, 1.2, 1] : 1
+                  scaleY: isListening ? [1, 0.3, 1] : [1, 0.9, 1],
+                  scaleX: isWaving ? [1, 1.3, 1] : 1
                 }}
                 transition={{ duration: isListening ? 0.5 : 2, repeat: Infinity }}
               />
               <motion.div 
-                className="w-3 h-3 bg-cyan-400 rounded-full shadow-lg shadow-cyan-400/50"
+                className="w-4 h-4 bg-blue-600 rounded-full"
                 animate={{ 
-                  scaleY: isListening ? [1, 0.3, 1] : [1, 0.8, 1],
-                  scaleX: isWaving ? [1, 1.2, 1] : 1
+                  scaleY: isListening ? [1, 0.3, 1] : [1, 0.9, 1],
+                  scaleX: isWaving ? [1, 1.3, 1] : 1
                 }}
                 transition={{ duration: isListening ? 0.5 : 2, repeat: Infinity, delay: 0.1 }}
               />
             </div>
 
-            {/* Mouth/Speaker */}
+            {/* Simple emoji mouth */}
             <motion.div 
-              className="mx-auto mt-2 w-8 h-2 bg-gradient-to-r from-blue-400/90 to-cyan-400/90 rounded-full relative overflow-hidden"
+              className="w-8 h-4 border-b-3 border-blue-600 rounded-b-full"
               animate={{ 
-                scaleX: isListening ? [1, 1.3, 1] : [1, 1.1, 1],
-                backgroundColor: isListening ? ["rgb(34 211 238 / 0.9)", "rgb(59 130 246 / 0.9)", "rgb(34 211 238 / 0.9)"] : undefined
+                scaleX: isListening ? [1, 1.2, 1] : [1, 1.05, 1],
+                borderColor: isListening ? ["rgb(37 99 235)", "rgb(59 130 246)", "rgb(37 99 235)"] : undefined
               }}
               transition={{ duration: 0.8, repeat: Infinity }}
+            />
+          </div>
+
+          {/* Simple emoji body */}
+          <div className="relative mt-2 mx-auto w-20 h-12 bg-gradient-to-b from-blue-100/90 to-blue-200/90 rounded-2xl border-2 border-blue-300/60 shadow-lg flex items-center justify-center">
+            {/* Heart for personality */}
+            <motion.div 
+              className="text-red-500 text-lg"
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
             >
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
-                animate={{ x: [-16, 32, -16] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              />
+              💙
             </motion.div>
           </div>
 
-          {/* Robot body */}
-          <div className="relative mt-2 mx-auto w-24 h-16 bg-gradient-to-b from-slate-700/90 to-slate-800/90 rounded-xl border border-cyan-400/60 shadow-lg">
-            {/* Chest panel */}
-            <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-14 h-8 bg-slate-600/60 rounded-lg border border-cyan-400/40">
-              <motion.div 
-                className="mt-1 mx-auto w-8 h-1 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full"
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              />
-              <div className="flex justify-center gap-1 mt-1">
-                <motion.div 
-                  className="w-1 h-1 bg-cyan-400 rounded-full"
-                  animate={{ opacity: [0.3, 1, 0.3] }}
-                  transition={{ duration: 1, repeat: Infinity }}
-                />
-                <motion.div 
-                  className="w-1 h-1 bg-blue-400 rounded-full"
-                  animate={{ opacity: [0.3, 1, 0.3] }}
-                  transition={{ duration: 1, repeat: Infinity, delay: 0.3 }}
-                />
-                <motion.div 
-                  className="w-1 h-1 bg-teal-400 rounded-full"
-                  animate={{ opacity: [0.3, 1, 0.3] }}
-                  transition={{ duration: 1, repeat: Infinity, delay: 0.6 }}
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Animated arms with gesture support */}
-          <div className="absolute top-16 -left-2 w-4 h-8">
+          {/* Simple emoji arms */}
+          <div className="absolute top-16 -left-1 w-3 h-8">
             <motion.div 
-              className="w-3 h-8 bg-gradient-to-b from-slate-700/90 to-slate-800/90 rounded-full border border-cyan-400/60"
+              className="w-6 h-3 bg-blue-200/90 rounded-full border border-blue-300/60"
               animate={isWaving ? { 
                 rotate: [0, 45, -30, 20, -10, 0],
                 y: [0, -2, 0, -1, 0]
               } : { 
-                rotate: [0, 10, -10, 0] 
+                rotate: [0, 15, -15, 0] 
               }}
               transition={{ 
                 duration: isWaving ? 1.2 : 3, 
@@ -325,14 +272,14 @@ export function GestureRobot() {
               }}
             />
           </div>
-          <div className="absolute top-16 -right-2 w-4 h-8">
+          <div className="absolute top-16 -right-1 w-3 h-8">
             <motion.div 
-              className="w-3 h-8 bg-gradient-to-b from-slate-700/90 to-slate-800/90 rounded-full border border-cyan-400/60"
+              className="w-6 h-3 bg-blue-200/90 rounded-full border border-blue-300/60"
               animate={isWaving ? { 
                 rotate: [0, -45, 30, -20, 10, 0],
                 y: [0, -2, 0, -1, 0]
               } : { 
-                rotate: [0, -10, 10, 0] 
+                rotate: [0, -15, 15, 0] 
               }}
               transition={{ 
                 duration: isWaving ? 1.2 : 3, 
@@ -343,14 +290,15 @@ export function GestureRobot() {
             />
           </div>
 
-          {/* Floating particles for magical effect */}
+          {/* Floating sparkles for magic */}
           {Array.from({ length: 3 }).map((_, i) => (
             <motion.div
               key={i}
-              className={`absolute w-1 h-1 rounded-full ${i % 2 === 0 ? 'bg-cyan-400' : 'bg-blue-400'}`}
+              className="absolute text-yellow-400"
               style={{
                 top: `${25 + i * 12}%`,
                 left: `${15 + i * 25}%`,
+                fontSize: '8px'
               }}
               animate={{ 
                 y: [0, -8, 0],
@@ -362,7 +310,9 @@ export function GestureRobot() {
                 repeat: Infinity, 
                 delay: i * 0.5 
               }}
-            />
+            >
+              ✨
+            </motion.div>
           ))}
         </div>
 
@@ -373,12 +323,12 @@ export function GestureRobot() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1, duration: 0.3 }}
             onClick={handleMuteToggle}
-            className="w-7 h-7 bg-slate-800/95 backdrop-blur-md border border-cyan-400/60 rounded-full flex items-center justify-center hover:bg-slate-700/95 transition-colors shadow-lg"
+            className="w-7 h-7 bg-blue-600/95 backdrop-blur-md border border-blue-400/60 rounded-full flex items-center justify-center hover:bg-blue-700/95 transition-colors shadow-lg"
           >
             {isMuted ? (
-              <VolumeX className="w-3 h-3 text-red-400" />
+              <VolumeX className="w-3 h-3 text-white" />
             ) : (
-              <Volume2 className="w-3 h-3 text-cyan-400" />
+              <Volume2 className="w-3 h-3 text-white" />
             )}
           </motion.button>
 
@@ -391,7 +341,7 @@ export function GestureRobot() {
               className={`w-7 h-7 backdrop-blur-md border rounded-full flex items-center justify-center transition-colors shadow-lg ${
                 isListening 
                   ? 'bg-green-600/90 border-green-400/60 hover:bg-green-700/90' 
-                  : 'bg-slate-800/95 border-cyan-400/60 hover:bg-slate-700/95'
+                  : 'bg-blue-600/95 border-blue-400/60 hover:bg-blue-700/95'
               }`}
             >
               {isListening ? (
@@ -402,28 +352,28 @@ export function GestureRobot() {
                   <Mic className="w-3 h-3 text-white" />
                 </motion.div>
               ) : (
-                <MicOff className="w-3 h-3 text-cyan-400" />
+                <MicOff className="w-3 h-3 text-white" />
               )}
             </motion.button>
           )}
         </div>
 
-        {/* Enhanced speech bubble */}
+        {/* Speech bubble */}
         {(currentMessage || (isVisible && !hasGreeted)) && (
           <motion.div
             initial={{ opacity: 0, scale: 0.5, x: 50 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ delay: 0.5, duration: 0.5 }}
-            className="absolute -top-20 -left-32 bg-slate-800/98 backdrop-blur-sm text-cyan-100 px-4 py-3 rounded-2xl text-xs font-medium shadow-2xl border border-cyan-400/40 max-w-48"
+            className="absolute -top-20 -left-32 bg-blue-600/98 backdrop-blur-sm text-white px-4 py-3 rounded-2xl text-xs font-medium shadow-2xl border border-blue-400/40 max-w-48"
           >
-            {currentMessage || "Hi! I'm your voice assistant 🤖"}
-            <div className="absolute bottom-0 right-8 w-0 h-0 border-l-3 border-r-3 border-t-3 border-l-transparent border-r-transparent border-t-slate-800/98 transform translate-y-full"></div>
+            {currentMessage || "Hi! I'm Blue-chi! 🤖"}
+            <div className="absolute bottom-0 right-8 w-0 h-0 border-l-3 border-r-3 border-t-3 border-l-transparent border-r-transparent border-t-blue-600/98 transform translate-y-full"></div>
           </motion.div>
         )}
 
-        {/* Interactive tooltip */}
-        <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-black/80 text-white px-3 py-1 rounded-full text-xs shadow-lg pointer-events-none select-none opacity-0 group-hover:opacity-100 transition-opacity">
-          {isListening ? 'Listening... Say "Hey robot"!' : 'Click me or use voice commands!'}
+        {/* Name tag */}
+        <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-blue-600/90 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+          Blue-chi 🤖
         </div>
       </div>
     </motion.div>
