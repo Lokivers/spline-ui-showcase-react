@@ -132,11 +132,13 @@ export function GestureRobot() {
 
   const handleMuteToggle = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setIsMuted(!isMuted);
-    if (!isMuted) {
-      // Stop any current speech
-      speechSynthesis.cancel();
-    }
+    setIsMuted((prev) => {
+      if (!prev) {
+        // Stop any current speech
+        speechSynthesis.cancel();
+      }
+      return !prev;
+    });
   };
 
   return (
@@ -152,17 +154,16 @@ export function GestureRobot() {
         type: "spring", 
         stiffness: 100 
       }}
-      className="fixed bottom-6 right-6 z-50 cursor-pointer group"
+      className="fixed bottom-8 right-8 z-50 cursor-pointer group"
       onClick={handleRobotClick}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
     >
       {/* Glass morphic container */}
       <div className="relative">
-        {/* Background blur effect */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-full blur-xl scale-110"></div>
-        
-
-        {/* Spline 3D Robot Model */}
-        <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden flex items-center justify-center bg-gradient-to-br from-blue-500/10 to-purple-600/10 group-hover:scale-105 transition-transform duration-300">
+        {/* Spline 3D Robot Model with voice button */}
+        <div className="relative w-44 h-44 md:w-56 md:h-56 rounded-full overflow-hidden flex items-center justify-center bg-gradient-to-br from-blue-500/10 to-purple-600/10 group-hover:scale-110 transition-transform duration-300 shadow-2xl border-4 border-blue-400/40">
           <SplineScene
             scene="https://prod.spline.design/6K8DjwQXL9XzVjsq/scene.splinecode"
             className="w-full h-full"
@@ -170,13 +171,41 @@ export function GestureRobot() {
           {/* Listening animation */}
           {isListening && (
             <motion.div
-              className="absolute inset-0 rounded-full border-4 border-blue-400/60 animate-pulse pointer-events-none"
+              className="absolute inset-0 rounded-full border-4 border-yellow-400/80 animate-pulse pointer-events-none"
               initial={{ opacity: 0.5, scale: 1 }}
               animate={{ opacity: [0.5, 1, 0.5], scale: [1, 1.1, 1] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             />
           )}
+          {/* Voice button */}
+          <button
+            onClick={isListening ? undefined : handleMouseDown}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+            className={`absolute bottom-2 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg border-2 border-white/30 transition-all duration-300 ${isListening ? 'ring-4 ring-yellow-400/60' : ''}`}
+            aria-label="Activate voice assistant"
+          >
+            <Mic className={`w-6 h-6 ${isListening ? 'text-yellow-400 animate-pulse' : 'text-white'}`} />
+          </button>
         </div>
+        {/* Tooltip for interaction */}
+        <div className="absolute left-1/2 -bottom-12 -translate-x-1/2 bg-black/90 text-white px-4 py-2 rounded-full text-xs shadow-lg pointer-events-none select-none border border-blue-400/30">
+          {isListening ? 'Listening... Speak a section name!' : 'Click robot or mic to chat • Hold mic for voice'}
+        </div>
+        {/* Mute/Unmute button */}
+        <motion.button
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 1, duration: 0.3 }}
+          onClick={handleMuteToggle}
+          className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-blue-500/80 to-purple-500/80 backdrop-blur-md rounded-full shadow-lg flex items-center justify-center hover:from-blue-600/80 hover:to-purple-600/80 transition-all duration-300 border-2 border-white/30"
+        >
+          {isMuted ? (
+            <VolumeX className="w-4 h-4 text-white" />
+          ) : (
+            <Volume2 className="w-4 h-4 text-white" />
+          )}
+        </motion.button>
 
         {/* Tooltip for interaction */}
         <div className="absolute left-1/2 -bottom-10 -translate-x-1/2 bg-black/80 text-white px-3 py-1 rounded-full text-xs shadow-lg pointer-events-none select-none">
