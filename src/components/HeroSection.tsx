@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { ArrowDown, Download, Github, Linkedin, Mail } from "lucide-react";
 import { useState, useRef } from "react";
 import { Button } from "./ui/button";
+import { ThemeToggle } from "./ui/ThemeToggle";
 
 export function HeroSection() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -105,7 +106,7 @@ export function HeroSection() {
               </a>
               {/* Theme toggle will be added here */}
               <div className="ml-2">
-                {/* ThemeToggle placeholder */}
+                <ThemeToggle />
               </div>
             </motion.div>
 

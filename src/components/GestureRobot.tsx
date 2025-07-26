@@ -1,4 +1,3 @@
-
 'use client';
 
 import { motion } from "framer-motion";
@@ -59,7 +58,6 @@ export function GestureRobot() {
     const randomMessage = workMessages[Math.floor(Math.random() * workMessages.length)];
     speak(randomMessage);
   };
-
   const handleMuteToggle = (e: React.MouseEvent) => {
     e.stopPropagation();
     const newMutedState = !isMuted;
@@ -95,6 +93,10 @@ export function GestureRobot() {
           />
           {/* Robot emoji overlay */}
           <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-6xl pointer-events-none select-none drop-shadow-lg">🤖</span>
+        </div>
+        {/* Tooltip for interaction */}
+        <div className="absolute left-1/2 -bottom-12 -translate-x-1/2 bg-black/90 text-white px-4 py-2 rounded-full text-xs shadow-lg pointer-events-none select-none border border-blue-400/30">
+          Click robot to chat about Logeshwaran!
         </div>
         {/* Control buttons - only mute now */}
         <div className="absolute top-2 right-2 flex gap-1">
