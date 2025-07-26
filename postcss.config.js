@@ -1,3 +1,7 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  // ... existing config ...
-}
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
