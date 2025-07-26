@@ -1,195 +1,111 @@
 
 'use client'
 
-import { motion } from "framer-motion";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
-import { useState } from "react";
+import React, { useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
+
+const SERVICE_ID = 'service_8yyr61k';
+const TEMPLATE_ID = 'template_thpg2x9';
+const PUBLIC_KEY = 'tMnTV04za1zvUD5vb';
 
 export function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
+  const form = useRef<HTMLFormElement>(null);
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState('');
 
-  const scrollToGetInTouch = () => {
-    const getInTouchSection = document.getElementById('get-in-touch');
-    if (getInTouchSection) {
-      getInTouchSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    // Redirect to Get In Touch section after form submission
-    scrollToGetInTouch();
-  };
+    setError('');
+    setSent(false);
 
-  const contactInfo = [
-    {
-      icon: <Mail className="w-6 h-6" />,
-      title: "Email",
-      value: "logeshwaran.t@example.com",
-      link: "mailto:logeshwaran.t@example.com"
-    },
-    {
-      icon: <Phone className="w-6 h-6" />,
-      title: "Phone",
-      value: "+91 9876543210",
-      link: "tel:+919876543210"
-    },
-    {
-      icon: <MapPin className="w-6 h-6" />,
-      title: "Location",
-      value: "Chennai, Tamil Nadu",
-      link: "#"
+    if (!form.current) return;
+
+    // Set the time field value right before sending
+    const timeInput = form.current.querySelector('input[name="time"]');
+    if (timeInput && timeInput instanceof HTMLInputElement) {
+      timeInput.value = new Date().toLocaleString();
     }
-  ];
+
+    // Debug output
+    const name = (form.current.querySelector('input[name="user_name"]') as HTMLInputElement)?.value;
+    const email = (form.current.querySelector('input[name="user_email"]') as HTMLInputElement)?.value;
+    const message = (form.current.querySelector('textarea[name="message"]') as HTMLTextAreaElement)?.value;
+    const time = (form.current.querySelector('input[name="time"]') as HTMLInputElement)?.value;
+    console.log('Sending to EmailJS:', { name, email, message, time });
+
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
+      .then(() => {
+        setSent(true);
+        form.current?.reset();
+      }, (err) => {
+        setError('Failed to send message. Please try again later.');
+        console.error(err);
+      });
+  };
 
   return (
-    <section id="contact" className="py-20 bg-black/[0.96]">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
+    <section id="contact" className="relative py-20 px-4 min-h-[60vh] flex items-center justify-center bg-neutral-900 overflow-hidden">
+      {/* Animated background blobs */}
+      <div className="pointer-events-none select-none absolute inset-0 w-full h-full z-0">
+        <div className="absolute top-[-10%] left-[-10%] w-80 h-80 bg-blue-700 opacity-30 rounded-full filter blur-3xl animate-blob1" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-purple-700 opacity-30 rounded-full filter blur-3xl animate-blob2" />
+        <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-pink-600 opacity-20 rounded-full filter blur-2xl animate-blob3" />
+      </div>
+      <style>{`
+        @keyframes blob1 {
+          0%, 100% { transform: translateY(0) scale(1); }
+          50% { transform: translateY(-40px) scale(1.1); }
+        }
+        @keyframes blob2 {
+          0%, 100% { transform: translateY(0) scale(1); }
+          50% { transform: translateY(40px) scale(1.05); }
+        }
+        @keyframes blob3 {
+          0%, 100% { transform: translate(-50%, -50%) scale(1); }
+          50% { transform: translate(-60%, -60%) scale(1.08); }
+        }
+        .animate-blob1 { animation: blob1 12s ease-in-out infinite; }
+        .animate-blob2 { animation: blob2 14s ease-in-out infinite; }
+        .animate-blob3 { animation: blob3 16s ease-in-out infinite; }
+      `}</style>
+      <div className="w-full max-w-xl mx-auto z-10 relative">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">Contact Me</h2>
+        <form
+          ref={form}
+          onSubmit={sendEmail}
+          className="flex flex-col gap-5 p-8 rounded-3xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-2xl"
         >
-          <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 mb-6">
-            Get In Touch
-          </h2>
-          <p className="text-lg text-neutral-400 max-w-3xl mx-auto">
-            Have a project in mind or want to collaborate? I'd love to hear from you. 
-            Let's discuss how we can bring your ideas to life.
-          </p>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="space-y-8"
+          <input
+            name="user_name"
+            type="text"
+            placeholder="Your Name"
+            required
+            className="p-3 rounded-xl border border-white/20 bg-white/20 placeholder:text-white/70 text-white focus:outline-none focus:ring-2 focus:ring-blue-400/40 backdrop-blur-md"
+          />
+          <input
+            name="user_email"
+            type="email"
+            placeholder="Your Email"
+            required
+            className="p-3 rounded-xl border border-white/20 bg-white/20 placeholder:text-white/70 text-white focus:outline-none focus:ring-2 focus:ring-blue-400/40 backdrop-blur-md"
+          />
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            required
+            rows={5}
+            className="p-3 rounded-xl border border-white/20 bg-white/20 placeholder:text-white/70 text-white focus:outline-none focus:ring-2 focus:ring-blue-400/40 backdrop-blur-md resize-none"
+          />
+          <input type="hidden" name="time" value="" />
+          <button
+            type="submit"
+            className="mt-2 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold text-lg shadow-lg hover:from-blue-600 hover:to-purple-600 transition-colors"
           >
-            <div>
-              <h3 className="text-2xl font-semibold text-white mb-6">
-                Let's Connect
-              </h3>
-              <p className="text-neutral-400 leading-relaxed mb-8">
-                I'm always open to discussing new opportunities, creative projects, 
-                or potential collaborations. Feel free to reach out through any of the channels below.
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              {contactInfo.map((info, index) => (
-                <motion.a
-                  key={info.title}
-                  href={info.link}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1, duration: 0.8 }}
-                  viewport={{ once: true }}
-                  className="flex items-center gap-4 p-4 rounded-lg bg-neutral-800/50 hover:bg-neutral-800 transition-colors group"
-                >
-                  <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 p-3 group-hover:scale-110 transition-transform duration-300">
-                    <div className="text-white">
-                      {info.icon}
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="text-white font-semibold">{info.title}</h4>
-                    <p className="text-neutral-400">{info.value}</p>
-                  </div>
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <Card className="p-8 bg-neutral-800/50 border-neutral-700">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="name" className="block text-white font-medium mb-2">
-                      Name
-                    </label>
-                    <Input
-                      id="name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({...formData, name: e.target.value})}
-                      className="bg-neutral-700 border-neutral-600 text-white"
-                      placeholder="Your name"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-white font-medium mb-2">
-                      Email
-                    </label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      className="bg-neutral-700 border-neutral-600 text-white"
-                      placeholder="your.email@example.com"
-                    />
-                  </div>
-                </div>
-                
-                <div>
-                  <label htmlFor="subject" className="block text-white font-medium mb-2">
-                    Subject
-                  </label>
-                  <Input
-                    id="subject"
-                    value={formData.subject}
-                    onChange={(e) => setFormData({...formData, subject: e.target.value})}
-                    className="bg-neutral-700 border-neutral-600 text-white"
-                    placeholder="Project discussion"
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="message" className="block text-white font-medium mb-2">
-                    Message
-                  </label>
-                  <Textarea
-                    id="message"
-                    value={formData.message}
-                    onChange={(e) => setFormData({...formData, message: e.target.value})}
-                    className="bg-neutral-700 border-neutral-600 text-white min-h-[120px]"
-                    placeholder="Tell me about your project..."
-                  />
-                </div>
-                
-                <Button 
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white"
-                >
-                  <Send className="w-4 h-4 mr-2" />
-                  Send Message
-                </Button>
-              </form>
-            </Card>
-          </motion.div>
-        </div>
+            Send
+          </button>
+          {sent && <p className="text-green-300 text-center font-medium">Message sent successfully!</p>}
+          {error && <p className="text-red-400 text-center font-medium">{error}</p>}
+        </form>
       </div>
     </section>
   );
