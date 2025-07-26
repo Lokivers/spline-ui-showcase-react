@@ -69,11 +69,7 @@ export function TimelineSection() {
   ];
 
   return (
-<<<<<<< HEAD
     <section id="timeline" className="relative min-h-screen bg-black/[0.98] pt-20 pb-2">
-=======
-    <section id="timeline" className="relative min-h-screen bg-black/[0.98] pt-20 pb-10">
->>>>>>> 2d0cef7828777952ff238c9950ab3f5385eb0cfb
       {/* Ethereal Shadow Background */}
       <div className="absolute inset-0">
         <EtherealShadow
