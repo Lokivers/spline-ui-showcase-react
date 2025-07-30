@@ -1,3 +1,6 @@
+import React from 'react';
+import { useState, useRef } from "react";
+
 'use client'
 
 import { SplineScene } from "@/components/ui/splite";
@@ -5,7 +8,6 @@ import { Card } from "@/components/ui/card";
 import { Spotlight } from "@/components/ui/spotlight";
 import { motion } from "framer-motion";
 import { ArrowDown, Download, Github, Linkedin, Mail } from "lucide-react";
-import { useState, useRef } from "react";
 import { Button } from "./ui/button";
 import { ThemeToggle } from "./ui/ThemeToggle";
 
@@ -160,3 +162,5 @@ export function HeroSection() {
     </section>
   );
 }
+
+npm install @vitejs/plugin-react-swc --save-dev
