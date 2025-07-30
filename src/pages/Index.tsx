@@ -13,6 +13,7 @@ import { ContactSection } from "@/components/ContactSection";
 import { AnimatedFooter } from "@/components/AnimatedFooter";
 import { GestureRobot } from "@/components/GestureRobot";
 import { BlendShapeBackground } from "@/components/BlendShapeBackground";
+import './index.css'; 
 
 const Index = () => {
   return (
@@ -27,7 +28,7 @@ const Index = () => {
         <ElaborateAboutSection />
         <LanguagesSection />
         <GitHubProjects />
-        <ProjectsCarousel />
+  
         <AwardsSection />
         <TimelineSection />
         <DownloadResumeSection />
