@@ -1,6 +1,10 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -10,7 +14,12 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
+<<<<<<< Updated upstream
   ],
+=======
+    mode === 'development' &&[]
+  ].filter(Boolean),
+>>>>>>> Stashed changes
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
