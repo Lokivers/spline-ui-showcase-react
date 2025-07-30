@@ -5,6 +5,7 @@
   "dependencies": {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "@emailjs/browser": "^4.4.1",
     "@hookform/resolvers": "^3.9.0",
     "@radix-ui/react-accordion": "^1.2.0",
@@ -81,6 +82,8 @@
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     "@types/react": "^19.1.8",
     "framer-motion": "^10.16.3",
     "lucide-react": "^0.308.0",
@@ -101,6 +104,9 @@
     "dev": "vite",
     "start": "node server.js"
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
