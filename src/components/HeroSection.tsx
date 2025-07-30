@@ -163,4 +163,4 @@ export function HeroSection() {
   );
 }
 
-npm install @vitejs/plugin-react-swc --save-dev
+

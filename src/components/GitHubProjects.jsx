@@ -1,114 +1,89 @@
 import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-const GITHUB_USERNAME = "Lokivers"; // <-- Your GitHub username
+const GITHUB_USERNAME = "Lokivers";
 
-export default function GitHubProjects() {
+export default function ShufflingProjectCards() {
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const fetchRepos = () => {
     setLoading(true);
     fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos`)
-      .then((res) => {
-        if (!res.ok) throw new Error("Network response was not ok");
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((data) => {
-        const filtered = data
+        const sorted = data
           .filter((repo) => !repo.fork)
           .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
-        setRepos(filtered);
+        setRepos(sorted);
         setLoading(false);
       })
       .catch((error) => {
-        setLoading(false);
+        console.error("Fetch error:", error);
         setRepos([]);
-        alert("Failed to fetch repositories: " + error.message);
+        setLoading(false);
       });
   };
 
   useEffect(() => {
     fetchRepos();
+    const interval = setInterval(() => {
+      setRepos((prev) => [...prev].sort(() => Math.random() - 0.5));
+    }, 8000);
+    return () => clearInterval(interval);
   }, []);
-
-  const shuffleRepos = () => {
-    setRepos((prev) => [...prev].sort(() => Math.random() - 0.5));
-  };
 
   if (loading) {
     return (
-      <section className="py-12 text-center">
-        <h2 className="text-4xl font-extrabold mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-green-400">
-          Featured Projects
-        </h2>
-        <div className="text-gray-400 animate-pulse">Loading repositories...</div>
-      </section>
+      <div className="text-center py-20 text-gray-400 animate-pulse">
+        Loading your awesome projects...
+      </div>
     );
   }
 
   return (
-    <section className="py-12">
-      <h2 className="text-4xl font-extrabold mb-8 text-center tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-green-400">
-        Featured Projects
+    <section className="py-16 px-4 sm:px-10 bg-black text-white min-h-screen">
+      <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-yellow-400">
+        🎨 Shuffle Creative Projects
       </h2>
-      <h1 className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4 mb-6">A showcase of my recent work, demonstrating expertise in modern web and mobile technologies.</h1>
 
-      {/* Shuffle button */}
-      <div className="flex justify-center mb-8">
-        <button
-          onClick={shuffleRepos}
-          className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-green-400 text-white font-semibold shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300"
-        >
-          Shuffle Projects
-        </button>
-      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <AnimatePresence>
+          {repos.map((repo) => (
+            <motion.div
+              key={repo.id}
+              layout
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              className="bg-gradient-to-br from-[#1f1f1f] to-[#2a2a2a] border border-gray-700 backdrop-blur-xl rounded-2xl p-6 shadow-xl hover:shadow-pink-500/30 transition-transform transform hover:-translate-y-2 group"
+            >
+              <div className="flex justify-end">
+                <span className="text-xs px-3 py-1 rounded-full bg-gradient-to-r from-pink-500 to-orange-400 text-black font-bold">
+                  Project
+                </span>
+              </div>
 
-      {/* Project Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
-        {repos.map((repo, idx) => (
-          <div
-            key={repo.id}
-            className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-white/10 rounded-3xl p-6 shadow-lg flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.4)]"
-          >
-            {/* Category Tag */}
-            <div className="flex justify-end">
-              <span className="bg-blue-600/80 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                Project
-              </span>
-            </div>
+              <h3 className="text-2xl font-bold mt-4 mb-2 group-hover:text-pink-400 transition-colors">
+                {repo.name}
+              </h3>
 
-            {/* Project Info */}
-            <h3 className="text-2xl font-bold mt-4 text-white">{repo.name}</h3>
-            <p className="text-gray-300 text-sm mt-2 mb-4">
-              {repo.description || "No description provided"}
-            </p>
+              <p className="text-sm text-gray-300 line-clamp-3 mb-6">
+                {repo.description || "No description provided."}
+              </p>
 
-            {/* Tech Stack Tags (just mock for now, you can customize later) */}
-            <div className="flex flex-wrap gap-2 mb-4">
-              <span className="px-3 py-1 text-xs font-medium bg-gray-700 rounded-full text-gray-200">
-                React
-              </span>
-              <span className="px-3 py-1 text-xs font-medium bg-gray-700 rounded-full text-gray-200">
-                TailwindCSS
-              </span>
-              <span className="px-3 py-1 text-xs font-medium bg-gray-700 rounded-full text-gray-200">
-                API
-              </span>
-            </div>
-
-            {/* View Code Button */}
-            <div>
               <a
                 href={repo.html_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full block text-center px-5 py-2 rounded-lg bg-gradient-to-r from-green-500 to-blue-500 text-white font-semibold shadow hover:shadow-xl hover:scale-[1.03] transition-transform duration-300"
+                className="block w-full text-center px-4 py-2 rounded-lg bg-gradient-to-r from-orange-400 to-pink-500 text-black font-semibold shadow hover:scale-[1.02] transition-transform"
               >
-                View Code
+                🔍 View Code
               </a>
-            </div>
-          </div>
-        ))}
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </section>
   );
