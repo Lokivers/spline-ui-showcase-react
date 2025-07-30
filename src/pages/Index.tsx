@@ -3,6 +3,7 @@ import { HeroSection } from "@/components/HeroSection";
 import { AboutSection } from "@/components/AboutSection";
 import { ElaborateAboutSection } from "@/components/ElaborateAboutSection";
 import { LanguagesSection } from "@/components/LanguagesSection";
+import GitHubProjects from "../components/GitHubProjects";
 import { ProjectsCarousel } from "@/components/ProjectsCarousel";
 import { AwardsSection } from "@/components/AwardsSection";
 import { TimelineSection } from "@/components/TimelineSection";
@@ -15,7 +16,7 @@ import { BlendShapeBackground } from "@/components/BlendShapeBackground";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-black relative">
+    <div className="min-h-screen bg-background relative">
       {/* Blend shape background */}
       <BlendShapeBackground />
       
@@ -25,6 +26,7 @@ const Index = () => {
         <AboutSection />
         <ElaborateAboutSection />
         <LanguagesSection />
+        <GitHubProjects />
         <ProjectsCarousel />
         <AwardsSection />
         <TimelineSection />

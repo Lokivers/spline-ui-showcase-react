@@ -60,7 +60,7 @@ export function ElaborateAboutSection() {
   ];
 
   return (
-    <section className="py-16 md:py-24 relative bg-black/[0.96]">
+    <section className="py-16 md:py-24 relative bg-background">
       {/* Background Effects */}
       <div className="absolute inset-0">
         <EtherealShadow
@@ -112,7 +112,7 @@ export function ElaborateAboutSection() {
             viewport={{ once: true }}
             className="space-y-8"
           >
-            <Card className="p-8 bg-black/40 backdrop-blur-sm border-neutral-800/50 hover:border-blue-500/50 transition-all duration-500">
+            <Card className="p-8 bg-card/50 backdrop-blur-sm border-border hover:border-blue-500/50 transition-all duration-500">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -127,10 +127,10 @@ export function ElaborateAboutSection() {
                   >
                     <Lightbulb className="w-6 h-6 text-white" />
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-white">My Journey</h3>
+                  <h3 className="text-2xl font-bold text-foreground">My Journey</h3>
                 </div>
                 
-                <div className="space-y-4 text-neutral-300 leading-relaxed">
+                <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
                     Hi! I'm <span className="text-blue-400 font-semibold">Logeshwaran</span>, a passionate full-stack developer 
                     with over 5 years of experience crafting digital solutions that make a difference. My journey began with 
@@ -157,7 +157,7 @@ export function ElaborateAboutSection() {
               transition={{ delay: 0.5, duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+              <h3 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
                 <Award className="w-5 h-5 text-yellow-500" />
                 Key Achievements
               </h3>
@@ -171,7 +171,7 @@ export function ElaborateAboutSection() {
                     viewport={{ once: true }}
                     whileHover={{ scale: 1.05 }}
                   >
-                    <Card className="p-4 bg-neutral-800/50 border-neutral-700/50 hover:border-blue-500/50 transition-all duration-300 text-center">
+                    <Card className="p-4 bg-card/50 border-border hover:border-blue-500/50 transition-all duration-300 text-center">
                       <motion.div
                         initial={{ scale: 0 }}
                         whileInView={{ scale: 1 }}
@@ -188,7 +188,7 @@ export function ElaborateAboutSection() {
                       <div className="text-2xl font-bold text-blue-400 mb-1">
                         {achievement.value}
                       </div>
-                      <div className="text-xs text-neutral-400">
+                      <div className="text-xs text-muted-foreground">
                         {achievement.label}
                       </div>
                     </Card>
@@ -207,14 +207,14 @@ export function ElaborateAboutSection() {
             className="space-y-8"
           >
             {/* Personality Traits */}
-            <Card className="p-8 bg-black/40 backdrop-blur-sm border-neutral-800/50 hover:border-purple-500/50 transition-all duration-500">
+            <Card className="p-8 bg-card/50 backdrop-blur-sm border-border hover:border-purple-500/50 transition-all duration-500">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
                 viewport={{ once: true }}
               >
-                <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
                   <Heart className="w-6 h-6 text-red-500" />
                   What Drives Me
                 </h3>
@@ -228,7 +228,7 @@ export function ElaborateAboutSection() {
                       transition={{ delay: 0.6 + index * 0.1, duration: 0.6 }}
                       viewport={{ once: true }}
                       whileHover={{ scale: 1.02, x: 10 }}
-                      className="flex items-start gap-4 p-4 rounded-lg bg-neutral-800/30 hover:bg-neutral-800/50 transition-all duration-300 group"
+                      className="flex items-start gap-4 p-4 rounded-lg bg-muted/30 hover:bg-muted/50 transition-all duration-300 group"
                     >
                       <motion.div
                         className={`w-10 h-10 rounded-lg bg-gradient-to-r ${trait.color} p-2 group-hover:scale-110 transition-transform duration-300`}
@@ -239,8 +239,8 @@ export function ElaborateAboutSection() {
                         </div>
                       </motion.div>
                       <div>
-                        <h4 className="font-semibold text-white mb-1">{trait.title}</h4>
-                        <p className="text-sm text-neutral-400">{trait.description}</p>
+                        <h4 className="font-semibold text-foreground mb-1">{trait.title}</h4>
+                        <p className="text-sm text-muted-foreground">{trait.description}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -255,7 +255,7 @@ export function ElaborateAboutSection() {
               transition={{ delay: 0.7, duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+              <h3 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
                 <Zap className="w-5 h-5 text-yellow-500" />
                 Areas of Interest
               </h3>
@@ -271,7 +271,7 @@ export function ElaborateAboutSection() {
                   >
                     <Badge 
                       variant="secondary" 
-                      className="px-3 py-1 bg-gradient-to-r from-neutral-800 to-neutral-700 text-neutral-300 border border-neutral-600 hover:border-purple-500/50 hover:from-purple-900/30 hover:to-blue-900/30 transition-all duration-300 cursor-default"
+                      className="px-3 py-1 bg-gradient-to-r from-muted to-muted/80 text-muted-foreground border border-border hover:border-purple-500/50 hover:from-purple-900/30 hover:to-blue-900/30 transition-all duration-300 cursor-default"
                     >
                       {interest}
                     </Badge>

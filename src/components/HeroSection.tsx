@@ -33,7 +33,7 @@ export function HeroSection() {
     <section 
       ref={heroRef}
       onMouseMove={handleMouseMove}
-      className="min-h-screen bg-black/[0.96] relative overflow-hidden"
+      className="min-h-screen bg-background/95 relative overflow-hidden"
     >
       <Spotlight
         className="-top-40 left-0 md:left-60 md:-top-20"
@@ -67,10 +67,10 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
             >
-              <h3 className="text-2xl md:text-3xl text-neutral-200 font-semibold mb-4">
+              <h3 className="text-2xl md:text-3xl text-foreground font-semibold mb-4">
                 Full Stack Developer
               </h3>
-              <p className="text-lg text-neutral-400 max-w-2xl leading-relaxed">
+              <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
                 Crafting digital experiences through innovative web and mobile applications. 
                 Specializing in modern technologies to bring ideas to life with clean code 
                 and beautiful interfaces.
@@ -116,13 +116,13 @@ export function HeroSection() {
               transition={{ delay: 0.8, duration: 0.8 }}
               className="flex gap-4 pt-4"
             >
-              <a href="https://github.com" className="text-neutral-400 hover:text-blue-400 transition-colors">
+              <a href="https://github.com" className="text-muted-foreground hover:text-blue-400 transition-colors">
                 <Github size={24} />
               </a>
-              <a href="https://linkedin.com" className="text-neutral-400 hover:text-blue-400 transition-colors">
+              <a href="https://linkedin.com" className="text-muted-foreground hover:text-blue-400 transition-colors">
                 <Linkedin size={24} />
               </a>
-              <a href="mailto:logeshwaran@example.com" className="text-neutral-400 hover:text-blue-400 transition-colors">
+              <a href="mailto:logeshwaran@example.com" className="text-muted-foreground hover:text-blue-400 transition-colors">
                 <Mail size={24} />
               </a>
             </motion.div>

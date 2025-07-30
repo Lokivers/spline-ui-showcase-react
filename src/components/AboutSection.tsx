@@ -35,7 +35,7 @@ export function AboutSection() {
   ];
 
   return (
-    <section id="about" className="py-12 md:py-20 relative min-h-screen bg-black/[0.96]">
+    <section id="about" className="py-12 md:py-20 relative min-h-screen bg-background">
       {/* Ethereal Shadow Background */}
       <div className="absolute inset-0">
         <EtherealShadow
@@ -59,7 +59,7 @@ export function AboutSection() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 mb-4 md:mb-6">
             About Me
           </h2>
-          <p className="text-base md:text-lg text-neutral-200 max-w-3xl mx-auto leading-relaxed px-4">
+          <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
             I'm a passionate full-stack developer with expertise in building scalable web and mobile applications. 
             With a strong foundation in modern technologies, I love turning complex problems into simple, 
             beautiful, and intuitive solutions.
@@ -75,16 +75,16 @@ export function AboutSection() {
               transition={{ delay: index * 0.1, duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <Card className="p-4 md:p-6 bg-black/30 backdrop-blur-sm border-neutral-800/50 hover:border-blue-500/50 transition-all duration-300 group hover:scale-105 hover:bg-black/40 h-full">
+              <Card className="p-4 md:p-6 bg-card/50 backdrop-blur-sm border-border hover:border-blue-500/50 transition-all duration-300 group hover:scale-105 hover:bg-card/70 h-full">
                 <div className={`w-12 h-12 md:w-16 md:h-16 rounded-lg bg-gradient-to-r ${skill.color} p-3 md:p-4 mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300`}>
                   <div className="text-white">
                     {skill.icon}
                   </div>
                 </div>
-                <h3 className="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">
+                <h3 className="text-lg md:text-xl font-semibold text-foreground mb-2 md:mb-3">
                   {skill.title}
                 </h3>
-                <p className="text-neutral-400 text-xs md:text-sm leading-relaxed">
+                <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">
                   {skill.description}
                 </p>
               </Card>

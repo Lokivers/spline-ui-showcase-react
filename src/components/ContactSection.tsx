@@ -27,8 +27,8 @@ export function ContactSection() {
     }
 
     // Debug output
-    const name = (form.current.querySelector('input[name="user_name"]') as HTMLInputElement)?.value;
-    const email = (form.current.querySelector('input[name="user_email"]') as HTMLInputElement)?.value;
+    const name = (form.current.querySelector('input[name="from_name"]') as HTMLInputElement)?.value;
+    const email = (form.current.querySelector('input[name="from_email"]') as HTMLInputElement)?.value;
     const message = (form.current.querySelector('textarea[name="message"]') as HTMLTextAreaElement)?.value;
     const time = (form.current.querySelector('input[name="time"]') as HTMLInputElement)?.value;
     console.log('Sending to EmailJS:', { name, email, message, time });
@@ -44,7 +44,7 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative py-20 px-4 min-h-[60vh] flex items-center justify-center bg-neutral-900 overflow-hidden">
+    <section id="contact" className="relative py-20 px-4 min-h-[60vh] flex items-center justify-center bg-background overflow-hidden">
       {/* Animated background blobs */}
       <div className="pointer-events-none select-none absolute inset-0 w-full h-full z-0">
         <div className="absolute top-[-10%] left-[-10%] w-80 h-80 bg-blue-700 opacity-30 rounded-full filter blur-3xl animate-blob1" />
@@ -73,28 +73,28 @@ export function ContactSection() {
         <form
           ref={form}
           onSubmit={sendEmail}
-          className="flex flex-col gap-5 p-8 rounded-3xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-2xl"
+          className="flex flex-col gap-5 p-8 rounded-3xl bg-card/50 backdrop-blur-lg border border-border shadow-2xl"
         >
           <input
-            name="user_name"
+            name="from_name"
             type="text"
             placeholder="Your Name"
             required
-            className="p-3 rounded-xl border border-white/20 bg-white/20 placeholder:text-white/70 text-white focus:outline-none focus:ring-2 focus:ring-blue-400/40 backdrop-blur-md"
+            className="p-3 rounded-xl border border-border bg-background/50 placeholder:text-muted-foreground text-foreground focus:outline-none focus:ring-2 focus:ring-blue-400/40 backdrop-blur-md"
           />
           <input
-            name="user_email"
+            name="from_email"
             type="email"
             placeholder="Your Email"
             required
-            className="p-3 rounded-xl border border-white/20 bg-white/20 placeholder:text-white/70 text-white focus:outline-none focus:ring-2 focus:ring-blue-400/40 backdrop-blur-md"
+            className="p-3 rounded-xl border border-border bg-background/50 placeholder:text-muted-foreground text-foreground focus:outline-none focus:ring-2 focus:ring-blue-400/40 backdrop-blur-md"
           />
           <textarea
             name="message"
             placeholder="Your Message"
             required
             rows={5}
-            className="p-3 rounded-xl border border-white/20 bg-white/20 placeholder:text-white/70 text-white focus:outline-none focus:ring-2 focus:ring-blue-400/40 backdrop-blur-md resize-none"
+            className="p-3 rounded-xl border border-border bg-background/50 placeholder:text-muted-foreground text-foreground focus:outline-none focus:ring-2 focus:ring-blue-400/40 backdrop-blur-md resize-none"
           />
           <input type="hidden" name="time" value="" />
           <button
@@ -103,8 +103,8 @@ export function ContactSection() {
           >
             Send
           </button>
-          {sent && <p className="text-green-300 text-center font-medium">Message sent successfully!</p>}
-          {error && <p className="text-red-400 text-center font-medium">{error}</p>}
+          {sent && <p className="text-green-500 dark:text-green-400 text-center font-medium">Message sent successfully!</p>}
+          {error && <p className="text-red-500 dark:text-red-400 text-center font-medium">{error}</p>}
         </form>
       </div>
     </section>

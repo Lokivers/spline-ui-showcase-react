@@ -37,7 +37,7 @@ export function AnimatedFooter() {
   }, []);
 
   return (
-    <footer className="relative bg-black/95 border-t border-neutral-800 overflow-hidden">
+    <footer className="relative bg-background border-t border-border overflow-hidden">
       {/* Animated Background Particles */}
       <div className="absolute inset-0">
         {particles.map((particle) => (
@@ -80,7 +80,7 @@ export function AnimatedFooter() {
             <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-4">
               Logeshwaran.T
             </h3>
-            <p className="text-neutral-300 text-sm leading-relaxed mb-6 max-w-md">
+            <p className="text-muted-foreground text-sm leading-relaxed mb-6 max-w-md">
               Full-stack developer crafting innovative digital experiences with modern technologies. 
               Bringing ideas to life through clean code and beautiful interfaces.
             </p>
@@ -94,7 +94,7 @@ export function AnimatedFooter() {
                 <motion.a
                   key={label}
                   href={href}
-                  className="w-10 h-10 bg-neutral-800/50 rounded-full flex items-center justify-center text-neutral-400 hover:text-blue-400 hover:bg-blue-500/20 transition-all duration-300"
+                  className="w-10 h-10 bg-muted/50 rounded-full flex items-center justify-center text-muted-foreground hover:text-blue-400 hover:bg-blue-500/20 transition-all duration-300"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -110,13 +110,13 @@ export function AnimatedFooter() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h4 className="text-white font-semibold mb-4">Quick Links</h4>
+            <h4 className="text-foreground font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
               {['About', 'Projects', 'Contact', 'Resume'].map((link) => (
                 <li key={link}>
                   <a 
                     href={`#${link.toLowerCase()}`}
-                    className="text-neutral-400 hover:text-blue-400 transition-colors duration-300 text-sm"
+                    className="text-muted-foreground hover:text-blue-400 transition-colors duration-300 text-sm"
                   >
                     {link}
                   </a>
@@ -131,11 +131,11 @@ export function AnimatedFooter() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h4 className="text-white font-semibold mb-4">Contact</h4>
+            <h4 className="text-foreground font-semibold mb-4">Contact</h4>
             <div className="space-y-2 text-sm">
-              <p className="text-neutral-400">logeshwaran.dev@gmail.com</p>
-              <p className="text-neutral-400">+91 9876543210</p>
-              <p className="text-neutral-400">Chennai, Tamil Nadu</p>
+              <p className="text-muted-foreground">logeshwaran.dev@gmail.com</p>
+              <p className="text-muted-foreground">+91 9876543210</p>
+              <p className="text-muted-foreground">Chennai, Tamil Nadu</p>
             </div>
           </motion.div>
         </div>
@@ -145,12 +145,12 @@ export function AnimatedFooter() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-12 pt-8 border-t border-neutral-800 flex flex-col md:flex-row justify-between items-center"
+          className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center"
         >
-          <p className="text-neutral-400 text-sm flex items-center gap-2">
+          <p className="text-muted-foreground text-sm flex items-center gap-2">
             © 2024 Logeshwaran.T. Made with <Heart className="w-4 h-4 text-red-500" fill="currentColor" /> and code.
           </p>
-          <p className="text-neutral-500 text-xs mt-2 md:mt-0">
+          <p className="text-muted-foreground text-xs mt-2 md:mt-0">
             Built with React, TypeScript & Tailwind CSS
           </p>
         </motion.div>

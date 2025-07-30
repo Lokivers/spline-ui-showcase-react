@@ -20,7 +20,7 @@ export function DownloadResumeSection() {
   };
 
   return (
-    <section id="resume" className="py-10 relative bg-black/[0.99]">
+    <section id="resume" className="py-10 relative bg-background">
       {/* Ethereal Shadow Background */}
       <div className="absolute inset-0">
         <EtherealShadow 
@@ -48,7 +48,7 @@ export function DownloadResumeSection() {
           <h2 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500 mb-6">
             Download Resume
           </h2>
-          <p className="text-lg text-neutral-300 max-w-2xl mx-auto mb-12">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-12">
             Get a comprehensive overview of my skills, experience, and achievements in a downloadable format.
           </p>
 
@@ -87,20 +87,20 @@ export function DownloadResumeSection() {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="mt-12 grid md:grid-cols-3 gap-6 max-w-4xl mx-auto"
           >
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-6">
+            <div className="bg-card/50 backdrop-blur-sm border border-border rounded-lg p-6">
               <FileText className="w-8 h-8 text-purple-400 mx-auto mb-4" />
-              <h3 className="text-white font-semibold mb-2">Professional Format</h3>
-              <p className="text-neutral-300 text-sm">Clean, ATS-friendly design optimized for recruiters</p>
+              <h3 className="text-foreground font-semibold mb-2">Professional Format</h3>
+              <p className="text-muted-foreground text-sm">Clean, ATS-friendly design optimized for recruiters</p>
             </div>
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-6">
+            <div className="bg-card/50 backdrop-blur-sm border border-border rounded-lg p-6">
               <Download className="w-8 h-8 text-pink-400 mx-auto mb-4" />
-              <h3 className="text-white font-semibold mb-2">Instant Download</h3>
-              <p className="text-neutral-300 text-sm">Get immediate access to my latest resume</p>
+              <h3 className="text-foreground font-semibold mb-2">Instant Download</h3>
+              <p className="text-muted-foreground text-sm">Get immediate access to my latest resume</p>
             </div>
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-6">
+            <div className="bg-card/50 backdrop-blur-sm border border-border rounded-lg p-6">
               <Eye className="w-8 h-8 text-purple-400 mx-auto mb-4" />
-              <h3 className="text-white font-semibold mb-2">Quick Preview</h3>
-              <p className="text-neutral-300 text-sm">View before downloading to see what's included</p>
+              <h3 className="text-foreground font-semibold mb-2">Quick Preview</h3>
+              <p className="text-muted-foreground text-sm">View before downloading to see what's included</p>
             </div>
           </motion.div>
         </motion.div>

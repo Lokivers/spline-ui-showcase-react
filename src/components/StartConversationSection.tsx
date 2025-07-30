@@ -40,7 +40,7 @@ export function StartConversationSection() {
   };
 
   return (
-    <section className="py-20 relative bg-black/[0.95]">
+    <section className="py-20 relative bg-background">
       {/* Glowing Background Lights */}
       <div className="absolute inset-0 overflow-hidden">
         <EtherealShadow
@@ -98,7 +98,7 @@ export function StartConversationSection() {
           </motion.div>
 
           <motion.h2 
-            className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300 mb-4"
+            className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-muted-foreground mb-4"
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.8 }}
@@ -107,7 +107,7 @@ export function StartConversationSection() {
             Start a Conversation
           </motion.h2>
           <motion.p 
-            className="text-lg text-neutral-400 max-w-2xl mx-auto leading-relaxed"
+            className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed"
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.8 }}
@@ -124,7 +124,7 @@ export function StartConversationSection() {
             transition={{ delay: 0.6, duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <Card className="p-8 md:p-12 bg-black/40 backdrop-blur-xl border-2 border-gray-800/50 hover:border-purple-500/50 transition-all duration-500 relative overflow-hidden group">
+            <Card className="p-8 md:p-12 bg-card/50 backdrop-blur-xl border-2 border-border hover:border-purple-500/50 transition-all duration-500 relative overflow-hidden group">
               {/* Animated background gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
@@ -143,7 +143,7 @@ export function StartConversationSection() {
                         scale: 1.05,
                         transition: { type: "spring", stiffness: 400 }
                       }}
-                      className="flex flex-col items-center text-center p-6 rounded-xl bg-neutral-800/30 hover:bg-neutral-800/50 border border-neutral-700/50 hover:border-purple-500/50 transition-all duration-300 group/item"
+                      className="flex flex-col items-center text-center p-6 rounded-xl bg-muted/30 hover:bg-muted/50 border border-border hover:border-purple-500/50 transition-all duration-300 group/item"
                     >
                       <motion.div 
                         className={`w-12 h-12 rounded-full bg-gradient-to-r ${info.color} p-3 mb-3 group-hover/item:scale-110 transition-transform duration-300`}
@@ -154,10 +154,10 @@ export function StartConversationSection() {
                           {info.icon}
                         </div>
                       </motion.div>
-                      <h3 className="text-sm font-semibold text-gray-400 mb-1 uppercase tracking-wider">
+                      <h3 className="text-sm font-semibold text-muted-foreground mb-1 uppercase tracking-wider">
                         {info.label}
                       </h3>
-                      <p className="text-white font-medium text-sm md:text-base">
+                      <p className="text-foreground font-medium text-sm md:text-base">
                         {info.value}
                       </p>
                     </motion.a>

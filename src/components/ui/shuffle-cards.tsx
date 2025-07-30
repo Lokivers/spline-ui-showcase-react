@@ -13,6 +13,7 @@ interface ShuffleCard {
   color: string;
   icon: React.ReactNode;
   image?: string;
+  link?: string;
 }
 
 interface ShuffleCardsProps {
@@ -89,8 +90,9 @@ export function ShuffleCards({ cards, className = "" }: ShuffleCardsProps) {
               }}
               className="cursor-pointer"
               style={{ perspective: "1000px" }}
+              onClick={() => card.link && window.open(card.link, '_blank')}
             >
-              <Card className="p-6 bg-black/40 backdrop-blur-sm border-neutral-800/50 hover:border-yellow-500/50 transition-all duration-300 group hover:bg-black/60 h-full relative overflow-hidden">
+              <Card className="p-6 bg-card/50 backdrop-blur-sm border-border hover:border-yellow-500/50 transition-all duration-300 group hover:bg-card/70 h-full relative overflow-hidden">
                 {/* Certificate Image Background */}
                 {card.image && (
                   <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
@@ -116,12 +118,20 @@ export function ShuffleCards({ cards, className = "" }: ShuffleCardsProps) {
                       {card.year}
                     </span>
                   </div>
-                  <h3 className="text-xl font-semibold text-white mb-3">
+                  <h3 className="text-xl font-semibold text-foreground mb-3">
                     {card.title}
                   </h3>
-                  <p className="text-neutral-400 text-sm leading-relaxed">
+                  <p className="text-muted-foreground text-sm leading-relaxed">
                     {card.description}
                   </p>
+                  {card.link && (
+                    <button
+                      onClick={e => { e.stopPropagation(); window.open(card.link, '_blank'); }}
+                      className="mt-4 px-3 py-1 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-semibold text-xs shadow hover:from-yellow-600 hover:to-orange-600 transition-colors"
+                    >
+                      Download Certificate
+                    </button>
+                  )}
                 </div>
               </Card>
             </motion.div>

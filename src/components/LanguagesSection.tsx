@@ -72,7 +72,7 @@ export function LanguagesSection() {
   ];
 
   return (
-    <section id="languages" className="py-20 relative min-h-screen bg-black/[0.98]">
+    <section id="languages" className="py-20 relative min-h-screen bg-background">
       {/* Ethereal Shadow Background */}
       <div className="absolute inset-0">
         <EtherealShadow
@@ -103,7 +103,7 @@ export function LanguagesSection() {
             Technologies & Languages
           </motion.h2>
           <motion.p 
-            className="text-lg text-neutral-200 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed"
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
@@ -132,7 +132,7 @@ export function LanguagesSection() {
                   viewport={{ once: true }}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <Card className="p-4 bg-black/40 backdrop-blur-sm border-neutral-800/50 hover:border-green-500/50 transition-all duration-300 group hover:bg-black/60 hover:shadow-lg h-full">
+                  <Card className="p-4 bg-card/50 backdrop-blur-sm border-border hover:border-green-500/50 transition-all duration-300 group hover:bg-card/70 hover:shadow-lg h-full">
                     <div className="flex flex-col items-center text-center space-y-3">
                       <div className="flex items-center justify-center">
                         {lang.name === "JavaScript" ? (
@@ -162,7 +162,7 @@ export function LanguagesSection() {
                         )}
                       </div>
                       
-                      <h3 className="text-lg font-semibold text-white">
+                      <h3 className="text-lg font-semibold text-foreground">
                         {lang.name}
                       </h3>
                       
@@ -196,7 +196,7 @@ export function LanguagesSection() {
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.05 }}
               >
-                <Card className="p-6 bg-black/40 backdrop-blur-sm border-neutral-800/50 hover:border-green-500/50 transition-all duration-300 group hover:bg-black/60 hover:shadow-2xl h-full">
+                <Card className="p-6 bg-card/50 backdrop-blur-sm border-border hover:border-green-500/50 transition-all duration-300 group hover:bg-card/70 hover:shadow-2xl h-full">
                   <div className="flex flex-col items-center text-center space-y-4">
                     <div className="flex items-center justify-center">
                       {lang.name === "JavaScript" ? (
@@ -226,7 +226,7 @@ export function LanguagesSection() {
                       )}
                     </div>
                     
-                    <h3 className="text-xl font-semibold text-white">
+                    <h3 className="text-xl font-semibold text-foreground">
                       {lang.name}
                     </h3>
                     
@@ -256,7 +256,7 @@ export function LanguagesSection() {
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.05 }}
               >
-                <Card className="p-6 bg-black/40 backdrop-blur-sm border-neutral-800/50 hover:border-green-500/50 transition-all duration-300 group hover:bg-black/60 hover:shadow-2xl h-full">
+                <Card className="p-6 bg-card/50 backdrop-blur-sm border-border hover:border-green-500/50 transition-all duration-300 group hover:bg-card/70 hover:shadow-2xl h-full">
                   <div className="flex flex-col items-center text-center space-y-4">
                     <div className="flex items-center justify-center">
                       <motion.span 
@@ -268,7 +268,7 @@ export function LanguagesSection() {
                       </motion.span>
                     </div>
                     
-                    <h3 className="text-xl font-semibold text-white">
+                    <h3 className="text-xl font-semibold text-foreground">
                       {lang.name}
                     </h3>
                     
