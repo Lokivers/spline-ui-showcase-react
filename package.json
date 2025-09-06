@@ -1,20 +1,23 @@
+
 {
   "name": "spline-ui-showcase-react",
   "version": "1.0.0",
   "description": "**URL**: <your-deployment-url>",
   "main": "eslint.config.js",
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.11",
-    "@types/node": "^24.1.0",
-    "@vitejs/plugin-react": "^4.7.0",
-    "@vitejs/plugin-react-swc": "^3.11.0",
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.11",
-    "vite": "^6.3.5"
+    "@types/node": "^20.8.0",
+    "@vitejs/plugin-react": "^4.0.4",
+    "@vitejs/plugin-react-swc": "^3.4.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.30",
+    "tailwindcss": "^3.3.3",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.9"
   },
   "scripts": {
     "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 8080",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -30,6 +33,7 @@
   },
   "homepage": "https://github.com/Lokivers/spline-ui-showcase-react#readme",
   "dependencies": {
+    "react": "^18.2.0",
     "@emailjs/browser": "^4.4.1",
     "@radix-ui/react-scroll-area": "^1.2.9",
     "@radix-ui/react-slot": "^1.2.3",
@@ -41,12 +45,14 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.12",
-    "gsap": "^3.13.0",
     "lucide-react": "^0.534.0",
     "next-themes": "^0.4.6",
-    "react-dom": "^19.1.1",
+    "react-dom": "^18.2.0",
     "react-router-dom": "^7.7.1",
     "sonner": "^2.0.6",
-    "tailwind-merge": "^3.3.1"
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss-animate": "^1.0.7"
   }
 }
+
+

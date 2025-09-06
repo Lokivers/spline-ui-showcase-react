@@ -13,7 +13,8 @@ import { ContactSection } from "@/components/ContactSection";
 import { AnimatedFooter } from "@/components/AnimatedFooter";
 import { GestureRobot } from "@/components/GestureRobot";
 import { BlendShapeBackground } from "@/components/BlendShapeBackground";
-import './index.css'; 
+import React from "react";
+
 
 const Index = () => {
   return (
