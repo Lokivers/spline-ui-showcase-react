@@ -13,8 +13,12 @@ import { ContactSection } from "@/components/ContactSection";
 import { AnimatedFooter } from "@/components/AnimatedFooter";
 import { GestureRobot } from "@/components/GestureRobot";
 import { BlendShapeBackground } from "@/components/BlendShapeBackground";
+<<<<<<< HEAD
 import React from "react";
 
+=======
+ 
+>>>>>>> f99432ddecc531fab6d25c7d4e2e172afdff6337
 
 const Index = () => {
   return (
