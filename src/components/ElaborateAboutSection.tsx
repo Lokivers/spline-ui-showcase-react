@@ -55,8 +55,8 @@ export function ElaborateAboutSection() {
 
   const interests = [
     "Full-Stack Development", "Mobile App Development", "Cloud Architecture",
-    "DevOps & Automation", "AI/ML Integration", "Open Source Contributing",
-    "Tech Writing", "Mentoring", "UI/UX Design", "System Architecture"
+    "DevOps & Automation", "Open Source Contributing",
+    "UI/UX Design"
   ];
 
   return (
@@ -133,13 +133,13 @@ export function ElaborateAboutSection() {
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
                     Hi! I'm <span className="text-blue-400 font-semibold">Logeshwaran</span>, a passionate full-stack developer 
-                    with over 5 years of experience crafting digital solutions that make a difference. My journey began with 
+                    with over 4years of learning and crafting digital solutions that make a difference. My journey began with 
                     curiosity about how websites work, and it has evolved into a deep love for creating innovative applications.
                   </p>
                   <p>
-                    I specialize in building scalable web and mobile applications using modern technologies like React, 
+                    I specialize in building scalable web and mobile applications using modern technologies like React,java, 
                     Node.js, and Python. What drives me is the opportunity to solve real-world problems through code and 
-                    create experiences that users genuinely love.
+                    create experiences that users genuinely likes.
                   </p>
                   <p>
                     When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, 

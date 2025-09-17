@@ -12,7 +12,7 @@ export function StartConversationSection() {
     {
       icon: <Mail className="w-5 h-5" />,
       label: "Email",
-      value: "logeshwaran.dev@gmail.com",
+      value: "logeshvanitha96@gmail.com",
       href: "mailto:logeshwaran.dev@gmail.com",
       color: "from-blue-500 to-cyan-500"
     },
@@ -223,16 +223,6 @@ export function StartConversationSection() {
                   viewport={{ once: true }}
                   className="text-center mt-8 pt-6 border-t border-neutral-700/50"
                 >
-                  <div className="flex items-center justify-center gap-2 text-neutral-400 text-sm">
-                    <span>Made with</span>
-                    <motion.div
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                    >
-                      <Heart className="w-4 h-4 text-red-500 fill-current" />
-                    </motion.div>
-                    <span>and code</span>
-                  </div>
                 </motion.div>
               </div>
             </Card>

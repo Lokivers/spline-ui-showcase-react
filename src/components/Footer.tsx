@@ -1,7 +1,7 @@
 
 'use client'
 
-import { Github, Linkedin, Mail, Heart } from "lucide-react";
+import { Github, Linkedin, Mail} from "lucide-react";
 
 export function Footer() {
   return (
@@ -43,13 +43,13 @@ export function Footer() {
                 <Github size={20} />
               </a>
               <a 
-                href="https://linkedin.com" 
+                href="https://www.linkedin.com/in/tlogeshwaran?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" 
                 className="w-10 h-10 bg-muted rounded-lg flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-blue-500 transition-all duration-300"
               >
                 <Linkedin size={20} />
               </a>
               <a 
-                href="mailto:logeshwaran.t@example.com" 
+                href="mailto:logeshvanitha96@gmail.com" 
                 className="w-10 h-10 bg-muted rounded-lg flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-blue-500 transition-all duration-300"
               >
                 <Mail size={20} />
@@ -60,7 +60,7 @@ export function Footer() {
         
         <div className="border-t border-border mt-12 pt-8 text-center">
           <p className="text-muted-foreground flex items-center justify-center gap-2">
-            Made with <Heart className="w-4 h-4 text-red-500" /> by Logeshwaran.T © 2024
+            Made by Logeshwaran.T © 2025
           </p>
         </div>
       </div>

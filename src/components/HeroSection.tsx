@@ -121,10 +121,10 @@ export function HeroSection() {
               <a href="https://github.com" className="text-muted-foreground hover:text-blue-400 transition-colors">
                 <Github size={24} />
               </a>
-              <a href="https://linkedin.com" className="text-muted-foreground hover:text-blue-400 transition-colors">
+              <a href="https://www.linkedin.com/in/tlogeshwaran?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app " className="text-muted-foreground hover:text-blue-400 transition-colors">
                 <Linkedin size={24} />
               </a>
-              <a href="mailto:logeshwaran@example.com" className="text-muted-foreground hover:text-blue-400 transition-colors">
+              <a href="mailto:logeshvanitha96@gmail.com" className="text-muted-foreground hover:text-blue-400 transition-colors">
                 <Mail size={24} />
               </a>
             </motion.div>

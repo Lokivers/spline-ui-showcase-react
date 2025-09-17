@@ -88,7 +88,6 @@ export function AnimatedFooter() {
               {[
                 { icon: Github, href: "https://github.com", label: "GitHub" },
                 { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-                { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
                 { icon: Mail, href: "mailto:logeshwaran.dev@gmail.com", label: "Email" }
               ].map(({ icon: Icon, href, label }) => (
                 <motion.a
@@ -133,9 +132,9 @@ export function AnimatedFooter() {
           >
             <h4 className="text-foreground font-semibold mb-4">Contact</h4>
             <div className="space-y-2 text-sm">
-              <p className="text-muted-foreground">logeshwaran.dev@gmail.com</p>
-              <p className="text-muted-foreground">+91 9876543210</p>
-              <p className="text-muted-foreground">Chennai, Tamil Nadu</p>
+              <p className="text-muted-foreground">logeshvanitha96@gmail.com</p>
+              <p className="text-muted-foreground">mail it</p>
+              <p className="text-muted-foreground">Erode, Tamil Nadu</p>
             </div>
           </motion.div>
         </div>
@@ -148,7 +147,7 @@ export function AnimatedFooter() {
           className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center"
         >
           <p className="text-muted-foreground text-sm flex items-center gap-2">
-            © 2024 Logeshwaran.T. Made with <Heart className="w-4 h-4 text-red-500" fill="currentColor" /> and code.
+            © 2025 Logeshwaran.T.
           </p>
           <p className="text-muted-foreground text-xs mt-2 md:mt-0">
             Built with React, TypeScript & Tailwind CSS
